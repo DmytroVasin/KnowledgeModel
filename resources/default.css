@@ -1,14 +1,14 @@
 /*
-navigation-bar {
-  background-color: #7F0000;
-}
-navigation-bar title {
-  color: white;
-}
-
+  navigation-bar {
+    background-color: #7F0000;
+  }
+  navigation-bar title {
+    color: white;
+  }
 */
+
 #main_view {
-  background-color: white;
+  background-color: #F0F;
 }
 
 #timer_label {

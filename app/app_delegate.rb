@@ -4,7 +4,7 @@ class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     cdq.setup
 
-    window.rootViewController = navigation_controller
+    window.rootViewController = main_view_controller
     window.makeKeyAndVisible
 
     true
@@ -18,7 +18,7 @@ class AppDelegate
     @main_view_controller ||= QuestionViewController.alloc.initWithNibName(nil, bundle: nil)
   end
 
-  def navigation_controller
-    @navigation_controller ||= UINavigationController.alloc.initWithRootViewController(main_view_controller)
-  end
+  # def navigation_controller
+  #   @navigation_controller ||= UINavigationController.alloc.initWithRootViewController(main_view_controller)
+  # end
 end
