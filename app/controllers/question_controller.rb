@@ -4,7 +4,7 @@ class QuestionViewController < UIViewController
   end
 
   def viewDidLoad
-    # self.view.backgroundColor = UIColor.whiteColor
+    self.view.backgroundColor = UIColor.whiteColor
 
     # view.image = UIImage.imageNamed('background.png')
 
