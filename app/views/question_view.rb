@@ -1,6 +1,12 @@
 class QuestionView < UIView
   def initWithFrame(frame)
     super.tap do
+
+      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>'
+      puts frame.size.width
+      puts frame.size.height
+      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>'
+
       self.styleId = 'main_view'
       addSubview(timer_label)
       addSubview(timer_button)
