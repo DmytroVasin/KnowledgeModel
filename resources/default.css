@@ -1,0 +1,31 @@
+/*
+navigation-bar {
+  background-color: #7F0000;
+}
+navigation-bar title {
+  color: white;
+}
+*/
+
+#main_view {
+  background-color: white;
+}
+
+#timer_label {
+  top: 160px;
+  left: 60px;
+  width: 200px;
+  height: 60px;
+  font-size: 60px;
+  text-align: center;
+  color: #7F7F7F;
+}
+
+#timer_button {
+  top: 230px;
+  left: 60px;
+  width: 200px;
+  height: 40px;
+  color: white;
+  background-color: #007F00;
+}
