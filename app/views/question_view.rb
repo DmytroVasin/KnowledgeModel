@@ -8,14 +8,14 @@ class QuestionView < UIView
   end
 
   def timer_label
-    @timer_label ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
+    @timer_label = UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.styleId = 'timer_label'
       label.text    = '00:00'
     end
   end
 
   def timer_button
-    @timer_button ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
+    @timer_button = UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.styleId = 'timer_button'
       button.setTitle('Start Timer', forState: UIControlStateNormal)
       button.setTitle('Interrupt!' , forState: UIControlStateSelected)

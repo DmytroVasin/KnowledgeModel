@@ -4,7 +4,18 @@ class QuestionViewController < UIViewController
   end
 
   def viewDidLoad
-    # self.view.backgroundColor = UIColor.whiteColor
+    self.view.backgroundColor = UIColor.redColor
+
+    # @label = UILabel.alloc.initWithFrame(CGRectZero)
+    # @label.text = "Colors"
+    # @label.sizeToFit
+    # @label.center = [self.view.frame.size.width / 2, self.view.frame.size.height / 2]
+    # @label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin
+
+    # self.view.addSubview(@label)
+
+
+
 
     # view.image = UIImage.imageNamed('background.png')
 
