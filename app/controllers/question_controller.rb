@@ -1,6 +1,7 @@
 class QuestionViewController < UIViewController
   def loadView
-    self.view = QuestionView.alloc.initWithFrame(CGRectZero)
+    # self.view = QuestionView.alloc.initWithFrame(CGRectZero)
+    self.view = MainView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
   end
 
   def viewDidLoad

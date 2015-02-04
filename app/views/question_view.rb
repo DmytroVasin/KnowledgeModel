@@ -1,13 +1,12 @@
 class QuestionView < UIView
   def initWithFrame(frame)
     super.tap do
-      self.styleId = 'main_view'
+      self.styleId = 'question_view'
 
-      addSubview( label('Ruby Test', 'label_ruby_test') )
-      addSubview( label('BY', 'label_by') )
-      addSubview( label('', 'label_j_way') )
-      # image...
-      addSubview( start_button )
+      # addSubview( label('Ruby Test', 'label_ruby_test') )
+      # addSubview( label('BY', 'label_by') )
+      # addSubview( label('', 'label_j_way') )
+      # addSubview( start_button )
     end
   end
 

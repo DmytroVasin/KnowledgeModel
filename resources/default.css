@@ -1,6 +1,17 @@
-#main_view {
+#question_view {
+  /*background-color: #d9dadb;*/
+  /*background-color: blue;*/
+
   background-color: #d9dadb;
-  /*background-image: url(interface/background.png);*/
+  border-radius  : 15px;
+  border-width   : 4px;
+  border-color   : #000;
+  border-style   : solid;
+
+}
+
+#main_view {
+  background-image: url(interface/background.png);
 }
 
 #label_j_way {
