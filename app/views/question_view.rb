@@ -5,6 +5,7 @@ class QuestionView < UIView
       puts '>>>>>>>>>>>>>>>>>>>>>>>>>>'
       puts frame.size.width
       puts frame.size.height
+      puts self
       puts '>>>>>>>>>>>>>>>>>>>>>>>>>>'
 
       self.styleId = 'main_view'

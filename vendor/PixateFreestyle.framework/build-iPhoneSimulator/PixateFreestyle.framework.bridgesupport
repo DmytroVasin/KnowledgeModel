@@ -11,7 +11,7 @@
 <field declared_type='int16_t' name='secondary' type='s'/>
 <field declared_type='int16_t' name='tertiary' type='s'/>
 </struct>
-<string_constant name='PIXATE_FREESTYLE_VERSION' value='2.1.4'/>
+<string_constant name='PIXATE_FREESTYLE_VERSION' value='2.1.3'/>
 <enum name='PIXATE_FREESTYLE_API_VERSION' value='2'/>
 <enum name='PXAnimationDirectionAlternate' value='2'/>
 <enum name='PXAnimationDirectionAlternateReverse' value='3'/>
@@ -2451,10 +2451,6 @@
 <arg declared_type='PXShape*' index='1' name='shape' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
-<method class_method='true' selector='loadFromData:'>
-<arg declared_type='NSData*' index='0' name='data' type='@'/>
-<retval declared_type='PXShapeDocument*' type='@'/>
-</method>
 <method class_method='true' selector='loadFromURL:'>
 <arg declared_type='NSURL*' index='0' name='URL' type='@'/>
 <retval declared_type='PXShapeDocument*' type='@'/>
@@ -4351,10 +4347,6 @@
 </method>
 </class>
 <class name='UIView'>
-<method selector='addStyleClass:'>
-<arg declared_type='NSString*' index='0' name='styleClass' type='@'/>
-<retval declared_type='void' type='v'/>
-</method>
 <method class_method='true' selector='addStylingSubclass:'>
 <arg declared_type='NSString*' index='0' name='className' type='@'/>
 <retval declared_type='void' type='v'/>
@@ -4390,10 +4382,6 @@
 <arg declared_type='NSString*' index='0' name='className' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
-<method selector='removeStyleClass:'>
-<arg declared_type='NSString*' index='0' name='styleClass' type='@'/>
-<retval declared_type='void' type='v'/>
-</method>
 <method class_method='true' selector='removeStylingSubclass:'>
 <arg declared_type='NSString*' index='0' name='className' type='@'/>
 <retval declared_type='void' type='v'/>
@@ -4424,11 +4412,6 @@
 </method>
 <method selector='styleClass'>
 <retval declared_type='NSString*' type='@'/>
-</method>
-<method selector='styleClassed:enabled:'>
-<arg declared_type='NSString*' index='0' name='styleClass' type='@'/>
-<arg declared_type='_Bool' index='1' name='enabled' type='B'/>
-<retval declared_type='void' type='v'/>
 </method>
 <method selector='styleId'>
 <retval declared_type='NSString*' type='@'/>

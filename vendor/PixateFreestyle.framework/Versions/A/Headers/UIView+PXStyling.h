@@ -55,10 +55,6 @@
 @property (nonatomic, copy) NSString *styleCSS;
 @property (nonatomic) PXStylingMode styleMode UI_APPEARANCE_SELECTOR;
 
-- (void)addStyleClass:(NSString *)styleClass;
-- (void)removeStyleClass:(NSString *)styleClass;
-- (void)styleClassed:(NSString *)styleClass enabled:(bool)enabled;
-
 + (void)updateStyles:(id<PXStyleable>)styleable recursively:(bool)recurse;
 
 @end
