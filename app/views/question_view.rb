@@ -1,34 +1,29 @@
 class QuestionView < UIView
   def initWithFrame(frame)
     super.tap do
-
-      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>'
-      puts frame.size.width
-      puts frame.size.height
-      puts self
-      puts '>>>>>>>>>>>>>>>>>>>>>>>>>>'
-
       self.styleId = 'main_view'
-      addSubview(timer_label)
-      addSubview(timer_button)
+
+      addSubview( label('Ruby Test', 'label_ruby_test') )
+      addSubview( label('BY', 'label_by') )
+      addSubview( label('', 'label_j_way') )
+      # image...
+      addSubview( start_button )
     end
   end
 
-  def timer_label
-    @timer_label = UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
-      label.styleId = 'timer_label'
-      label.text    = '00:00'
+  def label text, id
+    UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
+      label.styleId = id
+      label.text = text
     end
   end
 
-  def timer_button
+  def start_button
     @timer_button = UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
-      button.styleId = 'timer_button'
-      button.setTitle('Start Timer', forState: UIControlStateNormal)
-      button.setTitle('Interrupt!' , forState: UIControlStateSelected)
+      button.setTitle('Начать', forState: UIControlStateNormal)
+      button.styleId = 'start_button'
 
-      button.addTarget(nextResponder, action: 'timer_button_tapped:',
-        forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(nextResponder, action: 'timer_button_tapped:', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 

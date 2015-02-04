@@ -4,8 +4,6 @@ class QuestionViewController < UIViewController
   end
 
   def viewDidLoad
-    self.view.backgroundColor = UIColor.redColor
-
     # @label = UILabel.alloc.initWithFrame(CGRectZero)
     # @label.text = "Colors"
     # @label.sizeToFit
