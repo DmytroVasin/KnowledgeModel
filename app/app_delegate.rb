@@ -15,10 +15,16 @@ class AppDelegate
   end
 
   def main_view_controller
-    @main_view_controller ||= QuestionViewController.alloc.initWithNibName(nil, bundle: nil)
+    @main_view_controller ||= MainViewController.alloc.initWithNibName(nil, bundle: nil)
   end
 
-  # def navigation_controller
-  #   @navigation_controller ||= UINavigationController.alloc.initWithRootViewController(main_view_controller)
+  # def start_test
+  #   @alert = UIAlertView.alloc.initWithTitle('Greeting',
+  #       message:'Hi again!',
+  #       delegate: nil,
+  #       cancelButtonTitle: 'ok',
+  #       otherButtonTitles:nil)
+
+  #   @alert.show
   # end
 end

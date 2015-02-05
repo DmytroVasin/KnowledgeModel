@@ -1,7 +1,4 @@
 #question_view {
-  /*background-color: #d9dadb;*/
-  /*background-color: blue;*/
-
   background-color: #d9dadb;
   border-radius  : 15px;
   border-width   : 1px;
@@ -14,10 +11,6 @@
   background-image: url(interface/background.png);
 }
 
-/*#label_j_way {
-  background-image: url(interface/j-way.png);
-}
-*/
 #label_ruby_test {
   color: #000;
   text-align: center;
@@ -33,12 +26,15 @@
   font-style: italic;
 }
 
+#button_setup {
+  color: #4e729a;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Verdana';
+  /*font-style: italic;*/
+}
+
 #start_button {
-/*  top: 600px;
-  left: 80px;
-  width: 200px;
-  height: 40px;
-*/
   color            : #f8f7f6;
   background-color : linear-gradient(#f1501d, #b71507);
   border-width     : 1px;
@@ -46,17 +42,5 @@
   border-style     : solid;
   border-radius    : 10px;
   font-size        : 20px;
-
-
-  font-family: 'Verdana';
+  font-family      : 'Verdana';
 }
-
-
-/*color: #fff;
-background-color: linear-gradient(#00679B,#394170);
-height: 44px;
-border-radius  : 5px;
-border-width   : 1px;
-border-color   : #444;
-box-shadow     : inset 0 1px 0 rgba(101,177,232,0.9),
-0 1px 2px rgba(0,0,0,0.5);*/
