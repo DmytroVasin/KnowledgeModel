@@ -14,27 +14,15 @@
   background-image: url(interface/background.png);
 }
 
-#label_j_way {
+/*#label_j_way {
   background-image: url(interface/j-way.png);
-
-  top: 350px;
-  left: 60px;
-
-  width: 260px;
-  height: 60px;
 }
-
+*/
 #label_ruby_test {
   color: #000;
   text-align: center;
   font-size: 50px;
   font-family: 'Verdana';
-
-  top: 200px;
-  left: 60px;
-
-  width: 260px;
-  height: 60px;
 }
 
 #label_by {
@@ -43,12 +31,6 @@
   font-size: 35px;
   font-family: 'Verdana';
   font-style: italic;
-
-  top: 250px;
-  left: 60px;
-
-  width: 260px;
-  height: 60px;
 }
 
 #start_button {

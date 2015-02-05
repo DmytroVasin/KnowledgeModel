@@ -16,8 +16,6 @@ class MainView < UIView
   def start_button
     @timer_button = UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
-        # [30 + index*(button_width + 10), @label.frame.origin.y + button.frame.size.height + 30],
-        # [80, button.frame.size.height]
         [self.frame.size.width/2 - 100, self.frame.size.height - 55],
         [200, 40]
       ]
