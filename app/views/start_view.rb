@@ -1,7 +1,7 @@
 class StartView < UIView
   def initWithFrame(frame)
     super.tap do
-      self.styleId = 'question_view'
+      self.styleId = 'start_view'
 
       addSubview( button_setup )
 
