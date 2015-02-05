@@ -6,9 +6,26 @@ class MainView < UIView
       addSubview( QuestionView.alloc.initWithFrame(
         [
           [20, 30],
-          [self.frame.size.width - 40 , self.frame.size.height - 50]
+          [self.frame.size.width - 40 , self.frame.size.height - 95]
         ]
       ))
+      addSubview( start_button )
+    end
+  end
+
+  def start_button
+    @timer_button = UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
+      button.frame = [
+        # [30 + index*(button_width + 10), @label.frame.origin.y + button.frame.size.height + 30],
+        # [80, button.frame.size.height]
+        [self.frame.size.width/2 - 100, self.frame.size.height - 55],
+        [200, 40]
+      ]
+
+      button.setTitle('Начать', forState: UIControlStateNormal)
+      button.styleId = 'start_button'
+
+      # button.addTarget(nextResponder, action: 'timer_button_tapped:', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

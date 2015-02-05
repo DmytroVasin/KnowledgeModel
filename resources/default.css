@@ -4,10 +4,10 @@
 
   background-color: #d9dadb;
   border-radius  : 15px;
-  border-width   : 4px;
-  border-color   : #000;
+  border-width   : 1px;
+  border-color   : #929494;
   border-style   : solid;
-
+  box-shadow: inset 1px 1px 3px #000, 1px 1px 0px #F2F2F2;
 }
 
 #main_view {
@@ -52,18 +52,18 @@
 }
 
 #start_button {
-  top: 600px;
+/*  top: 600px;
   left: 80px;
   width: 200px;
   height: 40px;
-
-  color            : #446620;
-  background-color : linear-gradient(#87c44a, #b4da77);
+*/
+  color            : #f8f7f6;
+  background-color : linear-gradient(#f1501d, #b71507);
   border-width     : 1px;
-  border-color     : #84a254;
+  border-color     : #843736;
   border-style     : solid;
   border-radius    : 10px;
-  font-size        : 13px;
+  font-size        : 20px;
 
 
   font-family: 'Verdana';

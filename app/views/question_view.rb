@@ -3,9 +3,9 @@ class QuestionView < UIView
     super.tap do
       self.styleId = 'question_view'
 
-      # addSubview( label('Ruby Test', 'label_ruby_test') )
-      # addSubview( label('BY', 'label_by') )
-      # addSubview( label('', 'label_j_way') )
+      addSubview( label('Ruby Test', 'label_ruby_test') )
+      addSubview( label('BY', 'label_by') )
+      addSubview( label('', 'label_j_way') )
       # addSubview( start_button )
     end
   end
