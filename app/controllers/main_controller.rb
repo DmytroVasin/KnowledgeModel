@@ -11,6 +11,8 @@ class MainViewController < UIViewController
     questionViewController = QuestionViewController.alloc.init
     # questionViewController.delegate = self
 
+    questionViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
+
     self.presentViewController questionViewController, animated:true, completion:nil
   end
 
