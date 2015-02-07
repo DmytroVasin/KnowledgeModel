@@ -12,7 +12,6 @@ class AnswerController < UIViewController
     question_controller = QuestionViewController.alloc.init
     question_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
 
-    self.presentViewController question_controller, animated:true, completion:nil
-    # self.navigationController.pushViewController(question_controller, animated:true)
+    self.dismissModalViewControllerAnimated(true)
   end
 end

@@ -5,14 +5,14 @@ class QuestionViewController < UIViewController
   end
 
   def viewDidLoad
+    # super
   end
 
   def get_answer
     answer_controller = AnswerController.alloc.init
     answer_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
 
-    self.presentViewController answer_controller, animated:true, completion:nil
-    # self.navigationController.pushViewController(answer_controller, animated:true)
+    self.navigationController.presentModalViewController(answer_controller, animated:true)
   end
 
   def next_question
