@@ -4,7 +4,7 @@ class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     cdq.setup
 
-    window.rootViewController = main_view_controller
+    window.rootViewController = nav_view_controller
     window.makeKeyAndVisible
 
     true
@@ -16,6 +16,13 @@ class AppDelegate
 
   def main_view_controller
     @main_view_controller ||= MainViewController.alloc.initWithNibName(nil, bundle: nil)
+  end
+
+  def nav_view_controller
+    @nav_view_controller ||= UINavigationController.alloc.initWithRootViewController(main_view_controller)
+    @main_view_controller.delegate = @nav_view_controller
+
+    @nav_view_controller
   end
 
   # def start_test
