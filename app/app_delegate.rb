@@ -21,7 +21,6 @@ class AppDelegate
   def nav_view_controller
     @nav_view_controller ||= UINavigationController.alloc.initWithRootViewController(main_view_controller)
     @nav_view_controller.setNavigationBarHidden(true, animated:false)
-    # @main_view_controller.delegate = @nav_view_controller
 
     @nav_view_controller
   end
