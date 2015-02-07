@@ -1,8 +1,7 @@
 class QuestionViewController < UIViewController
-  # attr_accessor :delegate
   def loadView
     self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    # self.view.my_controller = self
+    self.view.current_controller = self
   end
 
 
@@ -15,7 +14,25 @@ class QuestionViewController < UIViewController
     # self.view.addSubview button
   end
 
-  # def press_button
-  #   delegate.done_with_b
-  # end
+
+  def get_answer
+    answer_controller = AnswerController.alloc.init
+    answer_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
+    self.presentViewController answer_controller, animated:true, completion:nil
+  end
+
+  def next_question
+    puts '>>>>>>>>>>>>>>>>>>>>>>>'
+    puts window
+    # puts self
+    puts '>>>>>>>>>>>>>>>>>>>>>>>'
+    # puts self.methods
+    puts '>>>>>>>>>>>>>>>>>>>>>>>'
+    # puts self.navigationController
+    puts '>>>>>>>>>>>>>>>>>>>>>>>'
+
+
+    questionViewController = QuestionViewController.alloc.init
+    self.navigationController.pushViewController(questionViewController, animated:true)
+  end
 end
