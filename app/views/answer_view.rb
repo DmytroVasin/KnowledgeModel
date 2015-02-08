@@ -5,6 +5,13 @@ class AnswerView < UIView
     super.tap do
       self.styleId = 'answer_view'
 
+      addSubview( AnswerView::Wrapper.alloc.initWithFrame(
+        [
+          [20, 30],
+          [self.frame.size.width - 40 , self.frame.size.height - 95]
+        ]
+      ))
+
       self.addSubview( back_to_question_btn )
     end
   end

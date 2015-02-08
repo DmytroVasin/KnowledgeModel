@@ -1,4 +1,4 @@
-class Question::Wrapper < UIView
+class AnswerView::Wrapper < UIView
   def initWithFrame(frame)
     super.tap do
       self.styleClass = 'main_view_wrapper'
@@ -19,7 +19,7 @@ class Question::Wrapper < UIView
       ]
 
       label.styleId = 'label_question'
-      label.text = 'Some text with big question, which was asked from me? Some text with big question, which was asked from me?'
+      label.text = 'hecks for the iPad, and so will allow all four rotations when an ipad is used, but we are not checking for the ipad when we calculate our width/height. We should! Using'
 
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
