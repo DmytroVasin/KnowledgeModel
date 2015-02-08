@@ -5,7 +5,7 @@ class QuestionView < UIView
     super.tap do
       self.styleId = 'question_view'
 
-      addSubview( StartView.alloc.initWithFrame(
+      addSubview( QuestionView::Wrapper.alloc.initWithFrame(
         [
           [20, 30],
           [self.frame.size.width - 40 , self.frame.size.height - 95]

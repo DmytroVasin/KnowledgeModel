@@ -1,7 +1,7 @@
-class StartView < UIView
+class MainView::Description < UIView
   def initWithFrame(frame)
     super.tap do
-      self.styleId = 'start_view'
+      self.styleClass = 'main_view_wrapper'
 
       addSubview( button_setup )
 
@@ -32,7 +32,7 @@ class StartView < UIView
       ]
 
       label.styleId = 'label_ruby_test'
-      label.text = 'Ruby Test'
+      label.text = 'Руби Тест'
     end
   end
 
