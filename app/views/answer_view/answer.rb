@@ -19,7 +19,7 @@ class AnswerView::Wrapper < UIView
       ]
 
       label.styleId = 'label_question'
-      label.text = 'hecks for the iPad, and so will allow all four rotations when an ipad is used, but we are not checking for the ipad when we calculate our width/height. We should! Using'
+      label.text = Question.identify(1)
 
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter

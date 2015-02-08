@@ -1,6 +1,4 @@
 class AnswerView < UIView
-  attr_accessor  :current_controller
-
   def initWithFrame(frame)
     super.tap do
       self.styleId = 'answer_view'
@@ -27,7 +25,7 @@ class AnswerView < UIView
       button.styleId = 'back_to_question_btn'
       button.styleClass = 'btn'
 
-      button.addTarget(current_controller, action: 'back_to_question', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(nil, action: 'back_to_question', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

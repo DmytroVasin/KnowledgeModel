@@ -1,6 +1,4 @@
 class QuestionView < UIView
-  attr_accessor :current_controller
-
   def initWithFrame(frame)
     super.tap do
       self.styleId = 'question_view'
@@ -28,7 +26,7 @@ class QuestionView < UIView
       button.styleClass = 'btn'
       button.styleId = 'answer_btn'
 
-      button.addTarget(current_controller, action: 'get_answer', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(nil, action: 'get_answer', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 
@@ -43,7 +41,7 @@ class QuestionView < UIView
       button.styleClass = 'btn'
       button.styleId = 'next_question_btn'
 
-      button.addTarget(current_controller, action: 'next_question', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(nil, action: 'next_question', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

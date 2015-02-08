@@ -33,4 +33,4 @@ Motion::Project::App.setup do |app|
   app.fonts = ["Inconsolata.ttf"]
 end
 
-task :"build:simulator" => :"schema:build"
+# task :"build:simulator" => :"schema:build"

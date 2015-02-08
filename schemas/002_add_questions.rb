@@ -1,5 +1,6 @@
 schema '002' do
   entity 'Question' do
+    integer32 :id
     string :question
     string :answer
 

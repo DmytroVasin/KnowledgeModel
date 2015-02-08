@@ -1,7 +1,6 @@
 class AnswerController < UIViewController
   def loadView
     self.view = AnswerView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    self.view.current_controller = self
   end
 
   def viewDidLoad

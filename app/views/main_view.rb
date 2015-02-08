@@ -1,6 +1,4 @@
 class MainView < UIView
-  attr_accessor :current_controller
-
   def initWithFrame(frame)
     super.tap do
       self.styleId = 'main_view'
@@ -26,7 +24,7 @@ class MainView < UIView
       button.setTitle('Начать', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(current_controller, action: 'start_testing', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(nil, action: 'start_testing', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="002" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
   <entity name="Question" syncable="YES" representedClassName="Question">
+    <attribute optional="YES" syncable="YES" attributeType="Integer 32" name="id" defaultValueString="0"/>
     <attribute optional="YES" syncable="YES" attributeType="String" name="question"/>
     <attribute optional="YES" syncable="YES" attributeType="String" name="answer"/>
     <relationship optional="YES" deletionRule="Nullify" syncable="YES" name="section" inverseEntity="Section" destinationEntity="Section" inverseName="questions" maxCount="1"/>

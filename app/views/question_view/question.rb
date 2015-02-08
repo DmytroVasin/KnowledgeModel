@@ -3,11 +3,12 @@ class Question::Wrapper < UIView
     super.tap do
       self.styleClass = 'main_view_wrapper'
 
-      addSubview( label_question )
+      rand_question = Question.load_random
+      addSubview( label_question(rand_question.question) )
     end
   end
 
-  def label_question
+  def label_question text
     @label_question ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.lineBreakMode = UILineBreakModeWordWrap
       label.numberOfLines = 0
@@ -19,7 +20,7 @@ class Question::Wrapper < UIView
       ]
 
       label.styleId = 'label_question'
-      label.text = 'Some text with big question, which was asked from me? Some text with big question, which was asked from me?'
+      label.text = text
 
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
