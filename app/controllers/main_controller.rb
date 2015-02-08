@@ -1,4 +1,4 @@
-class MainViewController < UIViewController
+class MainController < UIViewController
   def loadView
     self.view = MainView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
   end
@@ -8,7 +8,7 @@ class MainViewController < UIViewController
   end
 
   def start_testing
-    questionViewController = QuestionViewController.alloc.init
-    self.navigationController.pushViewController(questionViewController, animated:true)
+    question_controller = QuestionController.alloc.init
+    self.navigationController.pushViewController(question_controller, animated: true)
   end
 end

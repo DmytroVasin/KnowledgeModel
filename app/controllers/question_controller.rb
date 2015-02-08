@@ -1,4 +1,4 @@
-class QuestionViewController < UIViewController
+class QuestionController < UIViewController
   def loadView
     self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, load_random_question)
     self.view.current_controller = self
@@ -13,12 +13,12 @@ class QuestionViewController < UIViewController
     answer_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
     answer_controller.question_id = sender.tag
 
-    self.navigationController.presentModalViewController(answer_controller, animated:true)
+    self.navigationController.presentModalViewController(answer_controller, animated: true)
   end
 
   def next_question
-    questionViewController = QuestionViewController.alloc.init
-    self.navigationController.pushViewController(questionViewController, animated:true)
+    question_controller = QuestionController.alloc.init
+    self.navigationController.pushViewController(question_controller, animated: true)
   end
 
   def load_random_question

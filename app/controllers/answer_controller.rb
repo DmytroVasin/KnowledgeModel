@@ -10,7 +10,7 @@ class AnswerController < UIViewController
   end
 
   def back_to_question
-    question_controller = QuestionViewController.alloc.init
+    question_controller = QuestionController.alloc.init
     question_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
 
     self.dismissModalViewControllerAnimated(true)

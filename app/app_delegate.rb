@@ -19,7 +19,7 @@ class AppDelegate
   end
 
   def main_view_controller
-    @main_view_controller ||= MainViewController.alloc.initWithNibName(nil, bundle: nil)
+    @main_view_controller ||= MainController.alloc.initWithNibName(nil, bundle: nil)
   end
 
   def nav_view_controller
