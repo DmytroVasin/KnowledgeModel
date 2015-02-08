@@ -1,25 +1,23 @@
 class QuestionView < UIView
   attr_accessor  :current_controller
 
-  def initWithFrame(frame)
+  def initWithFrame frame, random_question
     super.tap do
       self.styleId = 'question_view'
-
-      load_random_question
 
       addSubview( Question::Wrapper.alloc.initWithFrame(
         [
           [20, 30],
           [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ], @random_question.question
+        ], random_question.question
       ))
 
-      self.addSubview( answer_btn )
-      self.addSubview( next_question_btn )
+      addSubview( answer_btn(random_question.id) )
+      addSubview( next_question_btn )
     end
   end
 
-  def answer_btn
+  def answer_btn question_id
     @answer_btn ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
         [20, self.frame.size.height - 55],
@@ -31,7 +29,7 @@ class QuestionView < UIView
       button.styleId = 'answer_btn'
 
       # WTF what is tag? for what reason it needed?
-      button.tag = @random_question.id
+      button.tag = question_id
 
       # WTF ?? nil vs self vs current_controller?
       button.addTarget(current_controller, action: 'get_answer:', forControlEvents: UIControlEventTouchUpInside)
@@ -53,7 +51,4 @@ class QuestionView < UIView
     end
   end
 
-  def load_random_question
-    @random_question = Question.load_random
-  end
 end

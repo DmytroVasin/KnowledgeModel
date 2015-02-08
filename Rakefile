@@ -18,10 +18,10 @@ Motion::Project::App.setup do |app|
   # app.interface_orientations = [:portrait]
 
   app.icons = [
-    'icons/icon_iphone.png',
-    'icons/icon_iphone_retina.png',
-    'icons/icon_ipad.png',
-    'icons/icon_ipad_retina.png'
+    'icons/j-way-icon-iphone.png',
+    'icons/j-way-icon-iphone-retina.png',
+    'icons/j-way-icon-ipad.png',
+    'icons/j-way-icon-ipad-retina.png'
   ]
   app.prerendered_icon = true
   app.device_family = [:iphone, :ipad]

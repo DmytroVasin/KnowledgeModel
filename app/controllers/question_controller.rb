@@ -1,6 +1,6 @@
 class QuestionViewController < UIViewController
   def loadView
-    self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, load_random_question)
     self.view.current_controller = self
   end
 
@@ -19,5 +19,9 @@ class QuestionViewController < UIViewController
   def next_question
     questionViewController = QuestionViewController.alloc.init
     self.navigationController.pushViewController(questionViewController, animated:true)
+  end
+
+  def load_random_question
+    Question.load_random
   end
 end
