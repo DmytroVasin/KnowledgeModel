@@ -19,7 +19,7 @@ class AnswerView::Wrapper < UIView
       ]
 
       label.styleId = 'label_question'
-      label.text = Question.identify(id)
+      label.text = Question.get_answer_by(id)
 
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
