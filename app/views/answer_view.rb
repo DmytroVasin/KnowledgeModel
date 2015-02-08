@@ -1,5 +1,5 @@
 class AnswerView < UIView
-  def initWithFrame(frame)
+  def initWithFrame frame, question_id
     super.tap do
       self.styleId = 'answer_view'
 
@@ -7,7 +7,7 @@ class AnswerView < UIView
         [
           [20, 30],
           [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ]
+        ], question_id
       ))
 
       self.addSubview( back_to_question_btn )

@@ -1,6 +1,8 @@
 class AnswerController < UIViewController
+  attr_accessor :question_id
+
   def loadView
-    self.view = AnswerView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    self.view = AnswerView.alloc.initWithFrame(UIScreen.mainScreen.bounds, self.question_id)
   end
 
   def viewDidLoad
