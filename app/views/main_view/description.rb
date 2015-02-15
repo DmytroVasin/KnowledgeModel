@@ -1,5 +1,5 @@
 class MainView::Description < UIView
-  def initWithFrame(frame)
+  def initWithFrame frame
     super.tap do
       self.styleClass = 'main_view_wrapper'
 
@@ -20,6 +20,7 @@ class MainView::Description < UIView
 
       button.styleId = 'button_setup'
       button.setTitle('настройка', forState: UIControlStateNormal)
+      button.addTarget(nil, action: 'setup_an_app', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 
@@ -58,6 +59,7 @@ class MainView::Description < UIView
         [self.frame.size.width/2 - 125, @label_by.frame.origin.y + 80],
         [265, 75]
       ]
+      image.contentMode = UIViewContentModeScaleAspectFit
     end
   end
 end

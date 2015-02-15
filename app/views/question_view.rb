@@ -27,11 +27,8 @@ class QuestionView < UIView
       button.setTitle('Ответ', forState: UIControlStateNormal)
       button.styleClass = 'btn'
       button.styleId = 'answer_btn'
-
-      # WTF what is tag? for what reason it needed?
       button.tag = question_id
 
-      # WTF ?? nil vs self vs current_controller?
       button.addTarget(current_controller, action: 'get_answer:', forControlEvents: UIControlEventTouchUpInside)
     end
   end

@@ -21,6 +21,7 @@ class Question::Wrapper < UIView
       label.styleId = 'label_question'
       label.text = text
 
+      # TODO: remove into css.
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
       # label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin
