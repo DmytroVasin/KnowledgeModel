@@ -342,19 +342,19 @@
 </method>
 <method selector='colorRefForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='CGColorRef' type='^{CGColor=}'/>
 </method>
 <method selector='floatForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='CGFloat' type='f' type64='d'/>
 </method>
 <method selector='insetsForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='UIEdgeInsets' type='{UIEdgeInsets=ffff}' type64='{UIEdgeInsets=dddd}'/>
 </method>
 <method selector='lineBreakModeForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='NSLineBreakMode' type='i' type64='q'/>
 </method>
 <method selector='nilableObjectForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
@@ -362,15 +362,15 @@
 </method>
 <method selector='rectForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='CGRect' type='{CGRect={CGPoint=ff}{CGSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
 </method>
 <method selector='sizeForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='CGSize' type='{CGSize=ff}' type64='{CGSize=dd}'/>
 </method>
 <method selector='textAlignmentForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='NSTextAlignment' type='i' type64='q'/>
 </method>
 <method selector='toCSS'>
 <retval declared_type='NSString*' type='@'/>
@@ -381,7 +381,7 @@
 </method>
 <method selector='transformForKey:'>
 <arg declared_type='id' index='0' name='key' type='@'/>
-<retval declared_type='id' type='@'/>
+<retval declared_type='CGAffineTransform' type='{CGAffineTransform=ffffff}' type64='{CGAffineTransform=dddddd}'/>
 </method>
 </class>
 <class name='NSMutableArray'>
@@ -407,22 +407,22 @@
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setColorRef:forKey:'>
-<arg declared_type='id' index='0' name='colorRef' type='@'/>
+<arg declared_type='CGColorRef' index='0' name='colorRef' type='^{CGColor=}'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setFloat:forKey:'>
-<arg declared_type='id' index='0' name='floatValue' type='@'/>
+<arg declared_type='CGFloat' index='0' name='floatValue' type='f' type64='d'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setInsets:forKey:'>
-<arg declared_type='id' index='0' name='insets' type='@'/>
+<arg declared_type='UIEdgeInsets' index='0' name='insets' type='{UIEdgeInsets=ffff}' type64='{UIEdgeInsets=dddd}'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setLineBreakMode:forKey:'>
-<arg declared_type='id' index='0' name='mode' type='@'/>
+<arg declared_type='NSLineBreakMode' index='0' name='mode' type='i' type64='q'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
@@ -432,22 +432,22 @@
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setRect:forKey:'>
-<arg declared_type='id' index='0' name='rect' type='@'/>
+<arg declared_type='CGRect' index='0' name='rect' type='{CGRect={CGPoint=ff}{CGSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setSize:forKey:'>
-<arg declared_type='id' index='0' name='size' type='@'/>
+<arg declared_type='CGSize' index='0' name='size' type='{CGSize=ff}' type64='{CGSize=dd}'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setTextAlignment:forKey:'>
-<arg declared_type='id' index='0' name='alignment' type='@'/>
+<arg declared_type='NSTextAlignment' index='0' name='alignment' type='i' type64='q'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
 <method selector='setTransform:forKey:'>
-<arg declared_type='id' index='0' name='transform' type='@'/>
+<arg declared_type='CGAffineTransform' index='0' name='transform' type='{CGAffineTransform=ffffff}' type64='{CGAffineTransform=dddddd}'/>
 <arg declared_type='id' index='1' name='key' type='@'/>
 <retval declared_type='void' type='v'/>
 </method>
@@ -744,7 +744,7 @@
 </class>
 <class name='NSScanner'>
 <method selector='scanCGFloat:'>
-<arg declared_type='id' index='0' name='cgFloatValue' type='@'/>
+<arg declared_type='CGFloat*' index='0' name='cgFloatValue' type='^f' type64='^d'/>
 <retval declared_type='BOOL' type='B'/>
 </method>
 </class>

@@ -5,7 +5,7 @@ class SetupView::Setup < UIView
 
       self.addSubview( SetupView::OptionsTable.alloc.initWithFrame(
         [
-          [20, 30],
+          [20, 50],
           [self.frame.size.width - 40 , self.frame.size.height - 95]
         ]
       ))
@@ -21,8 +21,8 @@ class SetupView::Setup < UIView
       label.sizeToFit
 
       label.frame = [
-        [60, 20],
-        [200, 60]
+        [self.frame.size.width/2 - 100, 10],
+        [200, 40]
       ]
 
       label.styleId = 'label_table_title'

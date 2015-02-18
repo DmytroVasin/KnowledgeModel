@@ -1,16 +1,38 @@
 class Question < CDQManagedObject
-  # scope :find_by_id {|id| where(:id).eq(id).first }
-  # scope :random, all.to_a.sample
+  scope :find_by_id {|_id| where(:id).eq(_id) }
 
-  class << self
-    def load_random
-      Question.all.to_a.sample
-      # Question.random
+  # scope :zzz, where(:id).eq(1)
+  scope :with_category {|category_name| where(:name).eq(category_name) }
+
+  def self.load_by_options
+    opts = SearchOptions.options.select{|key, val| val }.keys
+
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts opts
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+
+    results = opts.inject(Question.all) do |result, name|
+      puts '--------------'
+      puts result
+      puts name
+      puts '--------------'
+
+      result.with_category(name)
     end
 
-    def get_answer_by id
-      Question.where(:id).eq(id).first.answer
-      # Question.find_by_id(id).answer
-    end
+    # results.to_a.sample
+    puts '***************************'
+    puts results.to_a
+    puts '***************************'
+    Question.find_by_id(1).first
+  end
+
+  def self.get_answer_by id
+    get_record(id).answer
+  end
+
+  private
+  def self.get_record id
+    Question.find_by_id(id).first
   end
 end

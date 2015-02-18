@@ -22,6 +22,6 @@ class QuestionController < UIViewController
   end
 
   def load_random_question
-    Question.load_random
+    Question.load_by_options
   end
 end

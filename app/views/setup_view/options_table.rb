@@ -20,31 +20,31 @@ class SetupView::OptionsTable < UIView
   end
 
   def tableView(tableView, numberOfRowsInSection: section)
-    # @arrayOfRows.length
-    8
+    SearchOptions.options.count
   end
 
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     result = nil
 
-    if(tableView == @myTableView)
+    if tableView == @myTableView
       tableViewCellIdentifier = "MyCells"
 
-      # TODO: WTF?
       result = tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier)
-      # TODO: WTF?
-      if(result == nil)
+
+      if result == nil
         result = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:tableViewCellIdentifier)
       end
-      # TODO: wht is result?
-      result.textLabel.text = "Section: #{indexPath.section}, Cell: #{indexPath.row}"
+
+      result.textLabel.text = SearchOptions.options_array[indexPath.row]
+
       result.accessoryView = switch_radio_btn
     end
     result
   end
 
   def switch_radio_btn
-    UISwitch.alloc.initWithFrame([ [0, 0], [0, 0] ]).tap {|switch|
+    @switch = UISwitch.alloc.initWithFrame([ [0, 0], [0, 0] ]).tap {|switch|
+      switch.on = true
       switch.addTarget(nil, action: 'switch_is_changed:', forControlEvents: UIControlEventValueChanged)
     }
   end
@@ -53,23 +53,9 @@ class SetupView::OptionsTable < UIView
     ownerCell = sender.superview
 
     unless (ownerCell == nil)
-      # index path of the cll which contains the section and row of the cell
       ownerCellIndexPath = @myTableView.indexPathForCell(ownerCell)
 
-      puts '>>>>>>>>>>>>>>>>>>>'
-      puts ownerCellIndexPath.section
-      puts ownerCellIndexPath.row
-      puts '>>>>>>>>>>>>>>>>>>>'
-
-      #p "section = #{ownerCellIndexPath.section} and row = #{ownerCellIndexPath.row}"
-
-      #if (ownerCellIndexPath.section == 0 && ownerCellIndexPath.row ==1)
-        # This is the second row in the first section
-      #end
+      SearchOptions.change_status_for(ownerCellIndexPath.row, sender.on?)
     end
-  end
-
-  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
-    NSLog("Section: #{indexPath.section}, Cell: #{indexPath.row} is selected")
   end
 end
