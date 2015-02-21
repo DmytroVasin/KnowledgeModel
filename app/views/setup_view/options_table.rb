@@ -10,16 +10,20 @@ class SetupView::OptionsTable < UIView
   def init_table_view
     @myTableView ||= UITableView.alloc.initWithFrame(bounds, style: UITableViewStylePlain)
     @myTableView.dataSource = self
+
+    # @myTableView.scrollEnabled = (@myTableView.contentSize.height < @myTableView.frame.size.height)
+    @myTableView.alwaysBounceVertical = false
+
     # @myTableView.delegate = self
     # @myTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     @myTableView
   end
 
-  def numberOfSectionsInTableView(tableView)
+  def numberOfSectionsInTableView tableView
     1
   end
 
-  def tableView(tableView, numberOfRowsInSection: section)
+  def tableView tableView, numberOfRowsInSection: section
     SearchOptions.options.count
   end
 
