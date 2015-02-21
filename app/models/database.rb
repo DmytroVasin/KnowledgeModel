@@ -31,7 +31,7 @@ class Database
     path = File.join(App.resources_path,'data.sqlite')
 
     unless sqlite3_open(path, db_ptr) == SQLITE_OK
-      raise 'Couldn''t open the database!!'
+      raise "Couldn't open the database!!"
     end
 
     @database = db_ptr.value

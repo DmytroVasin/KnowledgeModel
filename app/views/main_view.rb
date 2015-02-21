@@ -1,4 +1,6 @@
 class MainView < UIView
+  attr_accessor  :main_controller
+
   def initWithFrame frame
     super.tap do
       self.styleId = 'main_view'
@@ -7,10 +9,14 @@ class MainView < UIView
         [
           [20, 30],
           [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ]
+        ],
+        main_controller
       ))
 
-      self.addSubview( start_button )
+      addSubview( start_button )
+
+      swipe = when_swiped{ main_controller.setup_an_app }
+      swipe.direction = UISwipeGestureRecognizerDirectionUp
     end
   end
 

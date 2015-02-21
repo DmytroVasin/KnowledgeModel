@@ -1,10 +1,10 @@
 class MainController < UIViewController
   def loadView
     self.view = MainView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    self.view.main_controller = self
   end
 
   def viewDidLoad
-    # super
   end
 
   def start_testing
