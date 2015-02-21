@@ -3,7 +3,7 @@ class Database
     self.new
   end
 
-  def execute(query)
+  def execute query
     results = []
     callback = ->(_context, count, values_array_ptr, column_names_array_ptr){
       row_obj = yield

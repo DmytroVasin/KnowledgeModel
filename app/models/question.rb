@@ -6,16 +6,16 @@ class Question
 
 
   def self.load_by_options
-     Question.where( SearchOptions.options ).sample
+    Question.where( SearchOptions.options ).sample
   end
 
   def self.find id
-    query = "SELECT * FROM questions WHERE id = #{id}"
+    query = "SELECT #{table_attrs('q')} FROM questions q WHERE id = #{id}"
     execute(query).first
   end
 
   def self.where option_hash
-    query = "SELECT #{table_attrs} FROM questions q \
+    query = "SELECT #{table_attrs('q')} FROM questions q \
              INNER JOIN sections s ON q.section_id = s.id \
              WHERE "
 
@@ -27,15 +27,16 @@ class Question
   end
 
   private
+  # DRY
   def self.execute query
     Database.instance.execute(query) { Question.new }
   end
 
-  def self.table_attrs
+  def self.table_attrs table
     # TODO: Refactoring
     string = ''
     attr_list.each do |x|
-      string += "q.#{x}"
+      string += "#{table}.#{x}"
       string += ', ' if x != attr_list[-1]
     end
     string
