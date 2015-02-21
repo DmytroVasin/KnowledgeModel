@@ -1,38 +1,43 @@
-class Question < CDQManagedObject
-  scope :find_by_id {|_id| where(:id).eq(_id) }
+class Question
+  def self.attr_list
+    [:id, :question, :answer]
+  end
+  attr_accessor *attr_list
 
-  # scope :zzz, where(:id).eq(1)
-  scope :with_category {|category_name| where(:name).eq(category_name) }
 
   def self.load_by_options
-    opts = SearchOptions.options.select{|key, val| val }.keys
-
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-    puts opts
-    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-
-    results = opts.inject(Question.all) do |result, name|
-      puts '--------------'
-      puts result
-      puts name
-      puts '--------------'
-
-      result.with_category(name)
-    end
-
-    # results.to_a.sample
-    puts '***************************'
-    puts results.to_a
-    puts '***************************'
-    Question.find_by_id(1).first
+     Question.where( SearchOptions.options ).sample
   end
 
-  def self.get_answer_by id
-    get_record(id).answer
+  def self.find id
+    query = "SELECT * FROM questions WHERE id = #{id}"
+    execute(query).first
+  end
+
+  def self.where option_hash
+    query = "SELECT #{table_attrs} FROM questions q \
+             INNER JOIN sections s ON q.section_id = s.id \
+             WHERE "
+
+    query << option_hash.select{|_, v| v }.keys.map{ |value| "s.name = '#{value}'" }.join(' OR ')
+
+    query << ' ORDER BY RANDOM()'
+
+    execute(query)
   end
 
   private
-  def self.get_record id
-    Question.find_by_id(id).first
+  def self.execute query
+    Database.instance.execute(query) { Question.new }
+  end
+
+  def self.table_attrs
+    # TODO: Refactoring
+    string = ''
+    attr_list.each do |x|
+      string += "q.#{x}"
+      string += ', ' if x != attr_list[-1]
+    end
+    string
   end
 end

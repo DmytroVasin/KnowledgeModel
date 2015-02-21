@@ -26,11 +26,9 @@ Motion::Project::App.setup do |app|
   app.prerendered_icon = true
   app.device_family = [:iphone, :ipad]
 
-
-  app.frameworks += [ 'CoreData' ]
-
   app.pixatefreestyle.framework = 'vendor/PixateFreestyle.framework'
   app.fonts = ["Inconsolata.ttf"]
-end
 
-task :"build:simulator" => :"schema:build"
+  app.libs += ['/usr/lib/libz.dylib', '/usr/lib/libsqlite3.dylib']
+  app.include 'sqlite3.h'
+end

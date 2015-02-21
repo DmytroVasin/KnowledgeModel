@@ -1,0 +1,1 @@
+1) attr, attr_reader, attr_writer, attr_acessor ( difference "attr :a" vs "attr :a, true" обьявит только один геттер, вместе с true - два метода )

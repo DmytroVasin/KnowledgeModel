@@ -1,3 +1,3 @@
-class Section < CDQManagedObject
+class Section
 
 end
