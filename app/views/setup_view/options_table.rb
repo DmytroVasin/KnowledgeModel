@@ -10,11 +10,13 @@ class SetupView::OptionsTable < UIView
     @myTableView ||= UITableView.alloc.initWithFrame(bounds, style: UITableViewStylePlain)
     @myTableView.dataSource = self
 
-
     @myTableView.frame = CGRectMake(
-      20, 50,
-      @myTableView.frame.size.width - 40, 60 * (SearchOptions.options.count - 1)
+      30, 50,
+      @myTableView.frame.size.width - 60, 55 * (SearchOptions.options.count - 1) - 1
     )
+
+    @myTableView.separatorInset = UIEdgeInsetsZero;
+    @myTableView.layoutMargins = UIEdgeInsetsZero;
 
     @myTableView.styleClass = 'table_view_wrapper'
 
@@ -28,10 +30,6 @@ class SetupView::OptionsTable < UIView
     # @myTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     @myTableView
   end
-
-  # def numberOfSectionsInTableView tableView
-  #   1
-  # end
 
   def tableView tableView, numberOfRowsInSection: section
     SearchOptions.options.count
@@ -49,27 +47,17 @@ class SetupView::OptionsTable < UIView
         result = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: tableViewCellIdentifier)
       end
 
+      result.layoutMargins = UIEdgeInsetsZero
       result.backgroundColor = UIColor.clearColor
       result.textLabel.text = SearchOptions.options_array[indexPath.row]
       result.accessoryView = switch_radio_btn
 
+      if indexPath.row == SearchOptions.options.count - 1
+        separatorLineView = UIView.alloc.initWithFrame([[0, result.frame.size.height-1], [result.frame.size.width, 1]])
+        separatorLineView.styleClass = 'separatorLineViewClass'
+        result.contentView.addSubview(separatorLineView)
+      end
 
-
-
-
-    if indexPath.row == self.tableView(self, numberOfRowsInSection:indexPath) - 1
-      separatorLineView = UIView.alloc.initWithFrame([[0, result.frame.size.height-1], [320, 1]])
-      separatorLineView.styleClass = 'separatorLineViewClass'
-      result.contentView.addSubview(separatorLineView)
-    end
-
-
-
-
-
-      # separatorLineView = UIView.alloc.initWithFrame([[0, result.frame.size.height-1], [320, 1]])
-      # separatorLineView.styleClass = 'separatorLineViewClass'
-      # result.contentView.addSubview(separatorLineView)
     end
     result
   end
