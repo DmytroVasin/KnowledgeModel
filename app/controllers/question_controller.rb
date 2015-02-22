@@ -1,4 +1,4 @@
-class QuestionController < UIViewController
+class QuestionController < ApplicationController
   def loadView
     self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, load_random_question)
     self.view.current_controller = self

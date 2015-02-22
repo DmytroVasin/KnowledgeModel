@@ -10,7 +10,7 @@ class AnswerView < UIView
         ], question_id
       ))
 
-      self.addSubview( back_to_question_btn )
+      addSubview( back_to_question_btn )
     end
   end
 
