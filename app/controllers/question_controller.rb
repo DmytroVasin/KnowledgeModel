@@ -9,7 +9,7 @@ class QuestionController < UIViewController
   end
 
   def get_answer sender
-    answer_controller = AnswerController.alloc.init
+    answer_controller = AnswerController.new
     answer_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
     answer_controller.question_id = sender.tag
 
@@ -17,10 +17,11 @@ class QuestionController < UIViewController
   end
 
   def next_question
-    question_controller = QuestionController.alloc.init
+    question_controller = QuestionController.new
     self.navigationController.pushViewController(question_controller, animated: true)
   end
 
+  private
   def load_random_question
     Question.load_by_options
   end
