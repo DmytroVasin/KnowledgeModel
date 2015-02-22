@@ -1,14 +1,12 @@
 class MainView::Description < UIView
   def initWithFrame frame, controller
-    super.tap do
-      self.styleClass = 'main_view_wrapper'
+    super
+    self.styleClass = 'main_view_wrapper'
 
-      addSubview( button_setup(controller) )
-
-      addSubview( label_ruby_test )
-      addSubview( label_by )
-      addSubview( image_j_way )
-    end
+    self.addSubview( button_setup(controller) )
+    self.addSubview( label_ruby_test )
+    self.addSubview( label_by )
+    self.addSubview( image_j_way )
   end
 
   def button_setup controller
@@ -20,7 +18,7 @@ class MainView::Description < UIView
 
       button.styleId = 'button_setup'
       button.setTitle('настройка', forState: UIControlStateNormal)
-      button.addTarget(controller, action: 'setup_an_app', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(controller, action: 'setup_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 

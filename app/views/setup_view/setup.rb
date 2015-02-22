@@ -1,11 +1,10 @@
 class SetupView::Setup < UIView
   def initWithFrame frame
-    super.tap do
-      self.styleClass = 'main_view_wrapper'
+    super
+    self.styleClass = 'main_view_wrapper'
 
-      self.addSubview( SetupView::OptionsTable.alloc.initWithFrame(bounds) )
-      self.addSubview( table_title )
-    end
+    self.addSubview( SetupView::OptionsTable.alloc.initWithFrame(bounds) )
+    self.addSubview( table_title )
   end
 
   def table_title

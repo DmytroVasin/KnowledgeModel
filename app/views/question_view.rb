@@ -1,26 +1,21 @@
 class QuestionView < UIView
-  attr_accessor  :current_controller
+  attr_accessor  :question_controller
 
   def initWithFrame frame, random_question
-    super.tap do
-      self.styleId = 'question_view'
+    super
+    self.styleId = 'question_view'
 
-      addSubview( Question::Wrapper.alloc.initWithFrame(
-        [
-          [20, 30],
-          [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ], random_question.question
-      ))
-
-      addSubview( answer_btn(random_question.id) )
-      addSubview( next_question_btn )
-
-      swipe = when_swiped{ current_controller.setup_an_app }
-      swipe.direction = UISwipeGestureRecognizerDirectionUp
-    end
+    self.addSubview( Question::Wrapper.alloc.initWithFrame(
+      [
+        [20, 30],
+        [self.frame.size.width - 40 , self.frame.size.height - 95]
+      ], random_question.question
+    ))
+    self.addSubview( answer_btn )
+    self.addSubview( next_question_btn )
   end
 
-  def answer_btn question_id
+  def answer_btn
     @answer_btn ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
         [20, self.frame.size.height - 55],
@@ -30,9 +25,8 @@ class QuestionView < UIView
       button.setTitle('Ответ', forState: UIControlStateNormal)
       button.styleClass = 'btn'
       button.styleId = 'answer_btn'
-      button.tag = question_id
 
-      button.addTarget(current_controller, action: 'get_answer:', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(question_controller, action: 'get_answer', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 
@@ -47,8 +41,7 @@ class QuestionView < UIView
       button.styleClass = 'btn'
       button.styleId = 'next_question_btn'
 
-      button.addTarget(nil, action: 'next_question', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(question_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
-
 end

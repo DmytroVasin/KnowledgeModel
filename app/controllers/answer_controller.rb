@@ -1,18 +1,10 @@
-class AnswerController < UIViewController
+class AnswerController < ModalController
   attr_accessor :question_id
 
   def loadView
     self.view = AnswerView.alloc.initWithFrame(UIScreen.mainScreen.bounds, self.question_id)
-  end
+    self.view.answer_controller = self
 
-  def viewDidLoad
-    # super
-  end
-
-  def back_to_question
-    question_controller = QuestionController.alloc.init
-    question_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-
-    self.dismissModalViewControllerAnimated(true)
+    self.view.when_swiped{ back_action }.direction = UISwipeGestureRecognizerDirectionRight
   end
 end

@@ -1,8 +1,8 @@
 class SetupView::OptionsTable < UIView
   def initWithFrame frame
-    super.tap do
-      self.addSubview( init_table_view )
-    end
+    super
+
+    self.addSubview( init_table_view )
   end
 
   def init_table_view

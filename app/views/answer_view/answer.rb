@@ -1,10 +1,9 @@
 class AnswerView::Wrapper < UIView
   def initWithFrame frame, question_id
-    super.tap do
-      self.styleClass = 'main_view_wrapper'
+    super
+    self.styleClass = 'main_view_wrapper'
 
-      addSubview( label_question(question_id) )
-    end
+    self.addSubview( label_question(question_id) )
   end
 
   def label_question id

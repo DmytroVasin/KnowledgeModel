@@ -2,21 +2,16 @@ class SetupView < UIView
   attr_accessor  :main_controller
 
   def initWithFrame frame
-    super.tap do
-      self.styleId = 'main_view'
+    super
+    self.styleId = 'main_view'
 
-      self.addSubview( SetupView::Setup.alloc.initWithFrame(
-        [
-          [20, 30],
-          [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ]
-      ))
-
-      self.addSubview( back_to_main_btn )
-
-      swipe = when_swiped{ main_controller.back_to_main }
-      swipe.direction = UISwipeGestureRecognizerDirectionDown
-    end
+    self.addSubview( SetupView::Setup.alloc.initWithFrame(
+      [
+        [20, 30],
+        [self.frame.size.width - 40 , self.frame.size.height - 95]
+      ]
+    ))
+    self.addSubview( back_to_main_btn )
   end
 
   def back_to_main_btn
@@ -29,7 +24,7 @@ class SetupView < UIView
       button.setTitle('Сохранить', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(main_controller, action: 'back_to_main', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(main_controller, action: 'back_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

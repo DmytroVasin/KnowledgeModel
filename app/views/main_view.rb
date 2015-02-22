@@ -2,22 +2,17 @@ class MainView < UIView
   attr_accessor  :main_controller
 
   def initWithFrame frame
-    super.tap do
-      self.styleId = 'main_view'
+    super
+    self.styleId = 'main_view'
 
-      addSubview( MainView::Description.alloc.initWithFrame(
-        [
-          [20, 30],
-          [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ],
-        main_controller
-      ))
-
-      addSubview( start_button )
-
-      swipe = when_swiped{ main_controller.setup_an_app }
-      swipe.direction = UISwipeGestureRecognizerDirectionUp
-    end
+    self.addSubview( MainView::Description.alloc.initWithFrame(
+      [
+        [20, 30],
+        [self.frame.size.width - 40 , self.frame.size.height - 95]
+      ],
+      main_controller
+    ))
+    self.addSubview( start_button )
   end
 
   def start_button
@@ -30,7 +25,7 @@ class MainView < UIView
       button.setTitle('Начать', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(main_controller, action: 'start_testing', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(main_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

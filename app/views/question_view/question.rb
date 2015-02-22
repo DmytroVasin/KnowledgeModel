@@ -1,10 +1,9 @@
 class Question::Wrapper < UIView
   def initWithFrame frame, rand_question_text
-    super.tap do
-      self.styleClass = 'main_view_wrapper'
+    super
+    self.styleClass = 'main_view_wrapper'
 
-      addSubview( label_question(rand_question_text) )
-    end
+    self.addSubview( label_question(rand_question_text) )
   end
 
   def label_question text

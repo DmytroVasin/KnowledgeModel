@@ -25,5 +25,4 @@ class Section
     end
     string
   end
-
 end

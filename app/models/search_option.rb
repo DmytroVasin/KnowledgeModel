@@ -1,5 +1,6 @@
 class SearchOptions
   def self.options
+    # TODO: STATE IS NOT CHANGED!
     @options ||= get_options_hash
   end
 

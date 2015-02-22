@@ -41,5 +41,4 @@ class Database
     # We need this?
     sqlite3_close(@database)
   end
-
 end

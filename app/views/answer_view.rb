@@ -1,17 +1,18 @@
 class AnswerView < UIView
+  attr_accessor  :answer_controller
+
   def initWithFrame frame, question_id
-    super.tap do
-      self.styleId = 'answer_view'
+    # For what reason we put super?
+    super
+    self.styleId = 'answer_view'
 
-      addSubview( AnswerView::Wrapper.alloc.initWithFrame(
-        [
-          [20, 30],
-          [self.frame.size.width - 40 , self.frame.size.height - 95]
-        ], question_id
-      ))
-
-      addSubview( back_to_question_btn )
-    end
+    self.addSubview( AnswerView::Wrapper.alloc.initWithFrame(
+      [
+        [20, 30],
+        [self.frame.size.width - 40 , self.frame.size.height - 95]
+      ], question_id
+    ))
+    self.addSubview( back_to_question_btn )
   end
 
   def back_to_question_btn
@@ -25,7 +26,7 @@ class AnswerView < UIView
       button.styleId = 'back_to_question_btn'
       button.styleClass = 'btn'
 
-      button.addTarget(nil, action: 'back_to_question', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(answer_controller, action: 'back_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

@@ -1,11 +1,9 @@
-class SetupController < UIViewController
+class SetupController < ModalController
   def loadView
     self.view = SetupView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     self.view.main_controller = self
-  end
 
-  def back_to_main
-    self.dismissModalViewControllerAnimated(true)
+    self.view.when_swiped{ back_action }.direction = UISwipeGestureRecognizerDirectionDown
   end
 end
 
