@@ -1,11 +1,18 @@
+/*TODO: Refactoring:*/
 #label_question {
   /*...*/
 }
 
+.table_view_wrapper {
+  background-color: #d9dadb;
+}
+.separatorLineViewClass {
+  background-color: #d9dadb;
+}
 #label_table_title {
   text-align: center;
-  font-size        : 20px;
-  font-family      : 'Verdana';
+  font-size: 20px;
+  font-family: 'Verdana';
 }
 
 .main_view_wrapper {
