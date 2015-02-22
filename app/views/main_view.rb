@@ -30,7 +30,7 @@ class MainView < UIView
       button.setTitle('Начать', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(nil, action: 'start_testing', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(main_controller, action: 'start_testing', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

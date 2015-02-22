@@ -14,6 +14,9 @@ class QuestionView < UIView
 
       addSubview( answer_btn(random_question.id) )
       addSubview( next_question_btn )
+
+      swipe = when_swiped{ current_controller.setup_an_app }
+      swipe.direction = UISwipeGestureRecognizerDirectionUp
     end
   end
 
