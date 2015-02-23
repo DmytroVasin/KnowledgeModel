@@ -1,12 +1,13 @@
 class Question
+  # TODO: When query returns empty array - app will down!
   def self.attr_list
     [:id, :question, :answer]
   end
   attr_accessor *attr_list
 
 
-  def self.load_by_options
-    Question.where( SearchOptions.options ).sample
+  def self.load_with_options
+    Question.where( SearchOption.only_truthful ).sample
   end
 
   def self.find id
@@ -14,14 +15,16 @@ class Question
     execute(query).first
   end
 
-  def self.where option_hash
+  def self.where options
     query = "SELECT #{table_attrs('q')} FROM questions q \
              INNER JOIN sections s ON q.section_id = s.id \
              WHERE "
 
-    query << option_hash.select{|_, v| v }.keys.map{ |value| "s.name = '#{value}'" }.join(' OR ')
+    query << options.map{ |option| "s.name = '#{option.name}'" }.join(' OR ')
 
     query << ' ORDER BY RANDOM()'
+
+    puts "Query: #{query}"
 
     execute(query)
   end

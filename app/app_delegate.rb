@@ -3,6 +3,8 @@ class AppDelegate
     window.rootViewController = nav_view_controller
     window.makeKeyAndVisible
 
+    SearchOption.init
+
     true
   end
 

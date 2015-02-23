@@ -19,6 +19,6 @@ class QuestionController < ApplicationController
 
   private
   def load_random_question
-    @question = Question.load_by_options
+    @question = Question.load_with_options
   end
 end

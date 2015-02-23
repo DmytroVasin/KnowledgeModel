@@ -12,7 +12,7 @@ class SetupView::OptionsTable < UIView
 
     @myTableView.frame = CGRectMake(
       30, 50,
-      @myTableView.frame.size.width - 60, 55 * (SearchOptions.options.count - 1) - 1
+      @myTableView.frame.size.width - 60, 55 * (SearchOption.count - 1) - 1
     )
 
     @myTableView.separatorInset = UIEdgeInsetsZero;
@@ -32,10 +32,12 @@ class SetupView::OptionsTable < UIView
   end
 
   def tableView tableView, numberOfRowsInSection: section
-    SearchOptions.options.count
+    SearchOption.count
   end
 
   def tableView tableView, cellForRowAtIndexPath: indexPath
+    current_option = SearchOption.find(indexPath.row)
+
     result = nil #result == cell ?
 
     if tableView == @myTableView
@@ -49,10 +51,14 @@ class SetupView::OptionsTable < UIView
 
       result.layoutMargins = UIEdgeInsetsZero
       result.backgroundColor = UIColor.clearColor
-      result.textLabel.text = SearchOptions.options_array[indexPath.row]
-      result.accessoryView = switch_radio_btn
 
-      if indexPath.row == SearchOptions.options.count - 1
+
+
+      result.textLabel.text = current_option.name
+      result.accessoryView = switch_radio_btn(current_option)
+
+      # WTF? not working!
+      if indexPath.row == SearchOption.count - 1
         separatorLineView = UIView.alloc.initWithFrame([[0, result.frame.size.height-1], [result.frame.size.width, 1]])
         separatorLineView.styleClass = 'separatorLineViewClass'
         result.contentView.addSubview(separatorLineView)
@@ -62,11 +68,11 @@ class SetupView::OptionsTable < UIView
     result
   end
 
-  def switch_radio_btn
+  def switch_radio_btn option
     @switch = UISwitch.alloc.initWithFrame([ [0, 0], [0, 0] ]).tap {|switch|
       switch.tintColor = UIColor.grayColor
 
-      switch.on = true
+      switch.on = option.is_set?
       switch.addTarget(nil, action: 'switch_is_changed:', forControlEvents: UIControlEventValueChanged)
     }
   end
@@ -77,7 +83,8 @@ class SetupView::OptionsTable < UIView
     unless (ownerCell == nil)
       ownerCellIndexPath = @myTableView.indexPathForCell(ownerCell)
 
-      SearchOptions.change_status_for(ownerCellIndexPath.row, sender.on?)
+      option = SearchOption.find(ownerCellIndexPath.row)
+      option.set(sender.on?)
     end
   end
 end
