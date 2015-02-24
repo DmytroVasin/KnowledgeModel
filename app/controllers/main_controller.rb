@@ -1,6 +1,5 @@
 class MainController < ApplicationController
   def loadView
-    # TODO: Add some before action/filter?
     self.view = MainView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     self.view.main_controller = self
 

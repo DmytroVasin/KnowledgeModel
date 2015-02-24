@@ -1,6 +1,8 @@
 class QuestionController < ApplicationController
   def loadView
-    self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, load_random_question)
+    load_random_question
+
+    self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, @question.question)
     self.view.question_controller = self
 
     self.view.when_swiped{ next_question_action }.direction = UISwipeGestureRecognizerDirectionLeft
@@ -11,7 +13,7 @@ class QuestionController < ApplicationController
   def get_answer
     answer_controller = AnswerController.new.tap {|controller|
       controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-      controller.question_id = @question.id
+      controller.answer = @question.answer
     }
 
     show_modal(answer_controller)
@@ -19,6 +21,6 @@ class QuestionController < ApplicationController
 
   private
   def load_random_question
-    @question = Question.load_with_options
+    @question = Question.load_by_options
   end
 end

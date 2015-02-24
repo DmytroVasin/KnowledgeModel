@@ -6,30 +6,34 @@ class Question
   attr_accessor *attr_list
 
 
-  def self.load_with_options
-    Question.where( SearchOption.only_truthful ).sample
+  def self.load_by_options
+    Question.get_random( SearchOption.only_truthful ) || init_default
   end
 
-  def self.find id
-    query = "SELECT #{table_attrs('q')} FROM questions q WHERE id = #{id}"
-    execute(query).first
-  end
+  def self.get_random options
+    if options.any?
+      query = "SELECT #{table_attrs('q')} FROM questions q \
+               INNER JOIN sections s ON q.section_id = s.id \
+               WHERE "
 
-  def self.where options
-    query = "SELECT #{table_attrs('q')} FROM questions q \
-             INNER JOIN sections s ON q.section_id = s.id \
-             WHERE "
+      query << options.map{ |option| "s.name = '#{option.name}'" }.join(' OR ')
 
-    query << options.map{ |option| "s.name = '#{option.name}'" }.join(' OR ')
+      query << ' ORDER BY RANDOM() LIMIT 1'
 
-    query << ' ORDER BY RANDOM()'
-
-    puts "Query: #{query}"
-
-    execute(query)
+      puts "Query: #{query}"
+      execute(query).first
+    else
+      puts 'Search option is empty'
+    end
   end
 
   private
+  def self.init_default
+    self.new.tap{|instance|
+      instance.question = instance.answer = 'Вы не выбрали ниодной категории.'
+    }
+  end
+
   # DRY
   def self.execute query
     Database.instance.execute(query) { Question.new }

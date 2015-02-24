@@ -1,7 +1,7 @@
 class QuestionView < UIView
   attr_accessor  :question_controller
 
-  def initWithFrame frame, random_question
+  def initWithFrame frame, question
     super
     self.styleId = 'question_view'
 
@@ -9,7 +9,7 @@ class QuestionView < UIView
       [
         [20, 30],
         [self.frame.size.width - 40 , self.frame.size.height - 95]
-      ], random_question.question
+      ], question
     ))
     self.addSubview( answer_btn )
     self.addSubview( next_question_btn )

@@ -1,7 +1,7 @@
 class AnswerView < UIView
   attr_accessor  :answer_controller
 
-  def initWithFrame frame, question_id
+  def initWithFrame frame, answer
     # For what reason we put super?
     super
     self.styleId = 'answer_view'
@@ -10,7 +10,7 @@ class AnswerView < UIView
       [
         [20, 30],
         [self.frame.size.width - 40 , self.frame.size.height - 95]
-      ], question_id
+      ], answer
     ))
     self.addSubview( back_to_question_btn )
   end

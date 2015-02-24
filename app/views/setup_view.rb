@@ -11,10 +11,10 @@ class SetupView < UIView
         [self.frame.size.width - 40 , self.frame.size.height - 95]
       ]
     ))
-    self.addSubview( back_to_main_btn )
+    self.addSubview( back_to_main_button )
   end
 
-  def back_to_main_btn
+  def back_to_main_button
     UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
         [self.frame.size.width/2 - 100, self.frame.size.height - 55],

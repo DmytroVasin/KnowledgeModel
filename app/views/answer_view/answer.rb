@@ -1,12 +1,12 @@
 class AnswerView::Wrapper < UIView
-  def initWithFrame frame, question_id
+  def initWithFrame frame, answer
     super
     self.styleClass = 'main_view_wrapper'
 
-    self.addSubview( label_question(question_id) )
+    self.addSubview( label_question(answer) )
   end
 
-  def label_question id
+  def label_question answer
     @label_question ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.lineBreakMode = UILineBreakModeWordWrap
       label.numberOfLines = 0
@@ -18,7 +18,7 @@ class AnswerView::Wrapper < UIView
       ]
 
       label.styleId = 'label_question'
-      label.text = Question.find(id).answer
+      label.text = answer
 
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
