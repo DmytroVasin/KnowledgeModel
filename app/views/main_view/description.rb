@@ -24,6 +24,7 @@ class MainView::Description < UIView
   end
 
   def label_ruby_test
+    # CGRectZero WTF ??? Add frame size here
     @label_ruby_test ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.sizeToFit
 

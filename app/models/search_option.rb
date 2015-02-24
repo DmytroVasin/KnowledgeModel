@@ -11,8 +11,8 @@ class SearchOption
       all.count
     end
 
-    def find index
-      all.find{|option| option.index == index }
+    def find_by_name name
+      all.find{|option| option.name == name }
     end
 
     def only_truthful
