@@ -20,8 +20,6 @@ class SetupView::Setup < UIView
 
       label.styleId = 'label_table_title'
       label.text = 'Выберите темы:'
-
-      # label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin
     end
   end
 end

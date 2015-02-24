@@ -15,6 +15,7 @@ class MainView::Description < UIView
         [self.frame.size.width - 110, 0],
         [110, 40]
       ]
+      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
 
       button.styleId = 'button_setup'
       button.setTitle('настройка', forState: UIControlStateNormal)
@@ -25,10 +26,12 @@ class MainView::Description < UIView
   def label_ruby_test
     @label_ruby_test ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.sizeToFit
+
       label.frame = [
-        [self.frame.size.width/2 - 130, self.frame.size.height/2 - 100],
+        [self.frame.size.width/2 - 130, self.frame.size.height/2 - 150],
         [260, 60]
       ]
+      label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
 
       label.styleId = 'label_ruby_test'
       label.text = 'Руби Тест'
@@ -39,9 +42,11 @@ class MainView::Description < UIView
     @label_by ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.sizeToFit
       label.frame = [
-        [self.frame.size.width/2 - 130, @label_ruby_test.frame.origin.y + 80],
+        [self.frame.size.width/2 - 130, @label_ruby_test.frame.origin.y + 130],
         [260, 60]
       ]
+
+      label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
 
       label.styleId = 'label_by'
       label.text = 'BY'
@@ -53,11 +58,15 @@ class MainView::Description < UIView
 
     @j_way_image_view ||= UIImageView.alloc.initWithImage(img).tap do |image|
       image.styleId = 'label_j_way'
+
       image.frame = [
-        [self.frame.size.width/2 - 125, @label_by.frame.origin.y + 80],
-        [265, 75]
+        [self.frame.size.width/2 - 130, @label_by.frame.origin.y + 140],
+        [260, 60]
       ]
-      image.contentMode = UIViewContentModeScaleAspectFit
+
+      image.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
+
+      image.contentMode = UIViewContentModeScaleAspectFill
     end
   end
 end
