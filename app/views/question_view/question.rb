@@ -6,7 +6,7 @@ class Question::Wrapper < UIView
     self.addSubview( label_question(question) )
   end
 
-  def label_question text
+  def label_question question
     @label_question ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.lineBreakMode = UILineBreakModeWordWrap
       label.numberOfLines = 0
@@ -14,16 +14,16 @@ class Question::Wrapper < UIView
 
       label.frame = [
         [20, 20],
-        [300, self.frame.size.height - 40]
+        [self.frame.size.width - 40, self.frame.size.height - 40]
       ]
 
       label.styleId = 'label_question'
-      label.text = text
+      label.text = question
 
       # TODO: remove into css.
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
-      # label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin
+      label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     end
   end
 end

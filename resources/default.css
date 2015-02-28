@@ -21,7 +21,7 @@
   border-width   : 1px;
   border-color   : #929494;
   border-style   : solid;
-  box-shadow: inset 1px 1px 3px #000, 1px 1px 0px #F2F2F2;
+  box-shadow: inset 1px 1px 3px #000;
 }
 
 #answer_view {

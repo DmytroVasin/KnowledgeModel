@@ -6,12 +6,15 @@ class AnswerView < UIView
     super
     self.styleId = 'answer_view'
 
-    self.addSubview( AnswerView::Wrapper.alloc.initWithFrame(
+    answer_wrapper = AnswerView::Wrapper.alloc.initWithFrame(
       [
         [20, 30],
-        [self.frame.size.width - 40 , self.frame.size.height - 95]
+        [self.frame.size.width - 40, self.frame.size.height - 95]
       ], answer
-    ))
+    )
+    answer_wrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+
+    self.addSubview( answer_wrapper )
     self.addSubview( back_to_question_btn )
   end
 
@@ -25,6 +28,8 @@ class AnswerView < UIView
       button.setTitle('Назад к вопросу', forState: UIControlStateNormal)
       button.styleId = 'back_to_question_btn'
       button.styleClass = 'btn'
+
+      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth
 
       button.addTarget(answer_controller, action: 'back_action', forControlEvents: UIControlEventTouchUpInside)
     end

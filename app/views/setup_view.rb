@@ -5,10 +5,13 @@ class SetupView < UIView
     super
     self.styleId = 'main_view'
 
-    @zz = SetupView::Setup.alloc.initWithFrame( [ [20, 30], [self.frame.size.width - 40 , self.frame.size.height - 95] ] )
-    @zz.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+    zz = SetupView::Setup.alloc.initWithFrame(
+      [[20, 30], [self.frame.size.width - 40 , self.frame.size.height - 95]]
+    ).tap{|subview|
+      subview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+    }
 
-    self.addSubview( @zz )
+    self.addSubview( zz )
 
 
     self.addSubview( back_to_main_button )
@@ -17,8 +20,8 @@ class SetupView < UIView
   def back_to_main_button
     UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
-        [self.frame.size.width/2 - 100, @zz.frame.origin.y + @zz.frame.size.height + 10],
-        [200, (self.frame.size.height)-(@zz.frame.origin.y + @zz.frame.size.height + 10) - 10]
+        [self.frame.size.width/2 - 100, self.frame.size.height - 53],
+        [200, 41]
       ]
 
       button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin

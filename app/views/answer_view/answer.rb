@@ -14,7 +14,7 @@ class AnswerView::Wrapper < UIView
 
       label.frame = [
         [20, 20],
-        [300, self.frame.size.height - 40]
+        [self.frame.size.width - 40, self.frame.size.height - 40]
       ]
 
       label.styleId = 'label_question'
@@ -22,7 +22,7 @@ class AnswerView::Wrapper < UIView
 
       label.font = UIFont.fontWithName("Inconsolata", size: 30)
       label.textAlignment = UITextAlignmentCenter
-      # label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin
+      label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     end
   end
 end
