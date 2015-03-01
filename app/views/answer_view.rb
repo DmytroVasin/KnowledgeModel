@@ -31,7 +31,7 @@ class AnswerView < UIView
 
       button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth
 
-      button.addTarget(answer_controller, action: 'back_action', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(answer_controller, action: 'dismiss_view', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

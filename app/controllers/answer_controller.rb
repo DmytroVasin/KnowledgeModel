@@ -5,6 +5,6 @@ class AnswerController < ModalController
     self.view = AnswerView.alloc.initWithFrame(UIScreen.mainScreen.bounds, self.answer)
     self.view.answer_controller = self
 
-    self.view.when_swiped{ back_action }.direction = UISwipeGestureRecognizerDirectionRight
+    self.view.when_swiped{ dismiss_view }.direction = UISwipeGestureRecognizerDirectionRight
   end
 end

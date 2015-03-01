@@ -6,14 +6,14 @@ class Question
 
 
   def self.load_by_options
-    # Question.get_random( SearchOption.only_truthful ) || init_default
-    Question.find(12)
+    # Question.find(12)
+    Question.get_random( SearchOption.only_truthful ) || init_default
   end
 
-  def self.find id
-    query = "Select #{table_attrs('q')} from questions q Where q.id = #{id}"
-    execute(query).first
-  end
+  # def self.find id
+  #   query = "Select #{table_attrs('q')} from questions q Where q.id = #{id}"
+  #   execute(query).first
+  # end
 
   def self.get_random options
     if options.any?

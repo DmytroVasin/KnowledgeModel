@@ -1,5 +1,5 @@
 class ModalController < UIViewController
-  def back_action
-    self.dismissModalViewControllerAnimated(true)
+  def dismiss_view
+    self.dismissViewControllerAnimated(true, completion: nil)
   end
 end
