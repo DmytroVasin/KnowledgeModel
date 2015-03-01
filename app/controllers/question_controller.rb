@@ -2,6 +2,8 @@ class QuestionController < ApplicationController
   def loadView
     load_random_question
 
+    self.automaticallyAdjustsScrollViewInsets = false
+
     self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, @question.question)
     self.view.question_controller = self
 

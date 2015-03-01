@@ -1,9 +1,8 @@
 /*TODO: Refactoring:*/
 #label_question {
-  border: 1px solid blue;
-  /*background-color: #d9dadb;
+  background-color: #d9dadb;
   font-size: 20px;
-  font-family: 'Verdana';*/
+  font-family: 'Verdana';
 }
 
 .table_view_wrapper {
