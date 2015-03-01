@@ -1,6 +1,7 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     window.rootViewController = nav_view_controller
+    window.rootViewController.wantsFullScreenLayout = true
     window.makeKeyAndVisible
 
     SearchOption.init

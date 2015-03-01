@@ -9,10 +9,6 @@ class SetupView::Setup < UIView
 
   def table_title
     @table_title ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
-      label.lineBreakMode = UILineBreakModeWordWrap
-      label.numberOfLines = 0
-      label.sizeToFit
-
       label.frame = [
         [self.frame.size.width/2 - 100, 10],
         [200, 40]
@@ -38,8 +34,8 @@ class SetupView::Setup < UIView
 
     @myTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
 
-    @myTableView.separatorInset = UIEdgeInsetsZero;
-    @myTableView.layoutMargins = UIEdgeInsetsZero;
+    @myTableView.separatorInset = UIEdgeInsetsZero
+    @myTableView.layoutMargins = UIEdgeInsetsZero
 
     @myTableView.styleClass = 'table_view_wrapper'
 

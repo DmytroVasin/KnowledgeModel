@@ -1,29 +1,31 @@
 class Question::Wrapper < UIView
   def initWithFrame frame, question
     super
-    self.styleClass = 'main_view_wrapper'
+    # self.styleClass = 'main_view_wrapper'
 
-    self.addSubview( label_question(question) )
+    self.addSubview( text_question(question) )
   end
 
-  def label_question question
-    @label_question ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
-      label.lineBreakMode = UILineBreakModeWordWrap
-      label.numberOfLines = 0
-      label.sizeToFit
+  def text_question question
+    @text_question ||= UITextView.alloc.initWithFrame(CGRectZero).tap do |scroll_view|
+      scroll_view.styleId = 'label_question'
 
-      label.frame = [
+      scroll_view.frame = [
         [20, 20],
         [self.frame.size.width - 40, self.frame.size.height - 40]
       ]
 
-      label.styleId = 'label_question'
-      label.text = question
+      scroll_view.text = question
 
-      # TODO: remove into css.
-      label.font = UIFont.fontWithName("Inconsolata", size: 30)
-      label.textAlignment = UITextAlignmentCenter
-      label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      scroll_view.alwaysBounceVertical = false
+
+
+      scroll_view.editable = false
+      scroll_view.selectable = false
+
+
+      scroll_view.textAlignment = UITextAlignmentCenter
+      scroll_view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     end
   end
 end

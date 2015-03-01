@@ -5,7 +5,6 @@ class QuestionView < UIView
     super
     self.styleId = 'question_view'
 
-    # self.frame.size.width - try to remove calling of this method to separate method.
     question_wrapper = Question::Wrapper.alloc.initWithFrame(
       [
         [20, 30],

@@ -1,5 +1,4 @@
 class Question
-  # TODO: When query returns empty array - app will down!
   def self.attr_list
     [:id, :question, :answer]
   end
@@ -7,7 +6,13 @@ class Question
 
 
   def self.load_by_options
-    Question.get_random( SearchOption.only_truthful ) || init_default
+    # Question.get_random( SearchOption.only_truthful ) || init_default
+    Question.find(12)
+  end
+
+  def self.find id
+    query = "Select #{table_attrs('q')} from questions q Where q.id = #{id}"
+    execute(query).first
   end
 
   def self.get_random options
