@@ -1,7 +1,7 @@
 class QuestionView < UIView
   attr_accessor  :question_controller
 
-  def initWithFrame frame, question
+  def initWithFrame frame, text_view
     super
     self.styleId = 'question_view'
 
@@ -9,9 +9,10 @@ class QuestionView < UIView
       [
         [20, 30],
         [self.frame.size.width - 40, self.frame.size.height - 95]
-      ], question
+      ]
     ).tap{ |subview|
       subview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      subview.addSubview(text_view)
     }
 
     self.addSubview( question_wrapper )
