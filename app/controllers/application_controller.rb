@@ -1,8 +1,7 @@
 class ApplicationController < UIViewController
   def setup_action
-    setup_controller = SetupController.new.tap { |controller|
-      controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical
-    }
+    setup_controller = SetupController.new
+    setup_controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical
 
     show_modal(setup_controller)
   end

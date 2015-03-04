@@ -1,13 +1,13 @@
-class MainView < UIView
-  attr_accessor  :main_controller
+class WelcomeView < UIView
+  attr_accessor  :welcome_controller
 
   def initWithFrame frame
     super
-    self.styleId = 'main_view'
+    self.styleId = 'welcome_view'
 
-    z = MainView::Description.alloc.initWithFrame(
+    z = WelcomeView::Description.alloc.initWithFrame(
       [[20, 30], [self.frame.size.width - 40 , self.frame.size.height - 95]],
-      main_controller
+      welcome_controller
     ).tap {|descr_view|
       descr_view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     }
@@ -29,7 +29,7 @@ class MainView < UIView
       button.setTitle('Начать', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(main_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(welcome_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

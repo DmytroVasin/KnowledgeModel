@@ -1,9 +1,9 @@
 class SetupView < UIView
-  attr_accessor  :main_controller
+  attr_accessor  :setup_controller
 
   def initWithFrame frame
     super
-    self.styleId = 'main_view'
+    self.styleId = 'welcome_view'
 
     zz = SetupView::Setup.alloc.initWithFrame(
       [[20, 30], [self.frame.size.width - 40 , self.frame.size.height - 95]]
@@ -29,7 +29,7 @@ class SetupView < UIView
       button.setTitle('Сохранить', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(main_controller, action: 'dismiss_view', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(setup_controller, action: 'dismiss_view', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

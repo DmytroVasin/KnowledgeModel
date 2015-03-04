@@ -1,4 +1,4 @@
-class MainView::Description < UIView
+class WelcomeView::Description < UIView
   def initWithFrame frame, controller
     super
     self.styleClass = 'main_view_wrapper'

@@ -81,8 +81,9 @@ class QuestionController < ApplicationController
     end
   end
 
-  def prepare_question(question)
-    # Tricky hack...
-    "\n#{question}\n"
+  def prepare_question question
+    # NOTE: 50 - magic number, because observer of the text_view is not trigger,
+    # when length is lower then one displayed string.
+    question.length < 50 ? "\n#{question}\n" : question
   end
 end
