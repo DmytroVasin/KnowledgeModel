@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     self.view.welcome_controller = self
 
-    self.view.when_swiped{ next_question_action }.direction = UISwipeGestureRecognizerDirectionLeft
-    self.view.when_swiped{ setup_action }.direction = UISwipeGestureRecognizerDirectionUp
+    self.view.swipe(:left){ next_question_action }
+    self.view.swipe(:up){ setup_action }
   end
 end

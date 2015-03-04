@@ -3,7 +3,7 @@ class SetupController < ModalController
     self.view = SetupView.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     self.view.setup_controller = self
 
-    self.view.when_swiped{ dismiss_view }.direction = UISwipeGestureRecognizerDirectionDown
+    self.view.swipe(:down){ dismiss_view }
   end
 end
 

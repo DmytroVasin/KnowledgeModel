@@ -17,10 +17,9 @@ class QuestionController < ApplicationController
 
     self.view = @question_view
 
-
-    self.view.when_swiped{ next_question_action }.direction = UISwipeGestureRecognizerDirectionLeft
-    self.view.when_swiped{ setup_action }.direction = UISwipeGestureRecognizerDirectionUp
-    self.view.when_swiped{ get_answer }.direction = UISwipeGestureRecognizerDirectionRight
+    self.view.swipe(:left){ next_question_action }
+    self.view.swipe(:up){ setup_action }
+    self.view.swipe(:right){ get_answer }
   end
 
   def get_answer
