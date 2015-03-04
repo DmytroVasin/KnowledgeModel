@@ -11,7 +11,7 @@ class QuestionView < UIView
         [self.frame.size.width - 40, self.frame.size.height - 95]
       ]
     ).tap{ |subview|
-      subview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      subview.autoresizingMask = subview.flexible_width_height
       subview.addSubview(text_view)
     }
 
@@ -31,7 +31,7 @@ class QuestionView < UIView
       button.styleClass = 'btn'
       button.styleId = 'answer_btn'
 
-      button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+      button.autoresizingMask = button.flexible_top
       button.addTarget(question_controller, action: 'get_answer', forControlEvents: UIControlEventTouchUpInside)
     end
   end
@@ -51,7 +51,7 @@ class QuestionView < UIView
       button.styleClass = 'btn'
       button.styleId = 'next_question_btn'
 
-      button.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin
+      button.autoresizingMask = button.flexible_width | button.flexible_top
 
       button.addTarget(question_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
     end

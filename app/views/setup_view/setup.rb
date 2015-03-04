@@ -14,7 +14,7 @@ class SetupView::Setup < UIView
         [200, 40]
       ]
 
-      label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
+      label.autoresizingMask = label.flexible_left_right
 
       label.styleId = 'label_table_title'
       label.text = 'Выберите темы:'
@@ -32,7 +32,7 @@ class SetupView::Setup < UIView
 
     @myTableView.dataSource = self
 
-    @myTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+    @myTableView.autoresizingMask = @myTableView.flexible_width_height
 
     @myTableView.separatorInset = UIEdgeInsetsZero
     @myTableView.layoutMargins = UIEdgeInsetsZero
@@ -73,16 +73,16 @@ class SetupView::Setup < UIView
       result.accessoryView = switch_radio_btn(current_option)
 
 
-      separatorLineView = UIView.alloc.initWithFrame([[0, result.frame.size.height - 1], [result.frame.size.width, 1]])
+      separator_line_view = UIView.alloc.initWithFrame([[0, result.frame.size.height - 1], [result.frame.size.width, 1]])
       # Trick to colorize separator in last row; I dont know - how he drow it without my wish!
-      separatorLineView.backgroundColor = if (indexPath.row != (SearchOption.count - 1))
+      separator_line_view.backgroundColor = if (indexPath.row != (SearchOption.count - 1))
         UIColor.colorWithRed(0.573, green:0.58, blue:0.58, alpha:1) #929494
       else
         UIColor.colorWithRed(0.851, green:0.855, blue:0.859, alpha:1) #d9dadb
       end
 
-      separatorLineView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-      result.addSubview(separatorLineView)
+      separator_line_view.autoresizingMask = separator_line_view.flexible_width
+      result.addSubview(separator_line_view)
     end
     result
   end

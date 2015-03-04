@@ -8,7 +8,7 @@ class SetupView < UIView
     zz = SetupView::Setup.alloc.initWithFrame(
       [[20, 30], [self.frame.size.width - 40 , self.frame.size.height - 95]]
     ).tap{|subview|
-      subview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      subview.autoresizingMask = subview.flexible_width_height
     }
 
     self.addSubview( zz )
@@ -24,7 +24,7 @@ class SetupView < UIView
         [200, 41]
       ]
 
-      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin
+      button.autoresizingMask = button.flexible_left_right | button.flexible_top
 
       button.setTitle('Сохранить', forState: UIControlStateNormal)
       button.styleId = 'start_button'

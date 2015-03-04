@@ -12,7 +12,7 @@ class AnswerView < UIView
         [self.frame.size.width - 40, self.frame.size.height - 95]
       ], answer
     )
-    answer_wrapper.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+    answer_wrapper.autoresizingMask = answer_wrapper.flexible_width_height
 
     self.addSubview( answer_wrapper )
     self.addSubview( back_to_question_btn )
@@ -29,7 +29,7 @@ class AnswerView < UIView
       button.styleId = 'back_to_question_btn'
       button.styleClass = 'btn'
 
-      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth
+      button.autoresizingMask = button.flexible_left_right | button.flexible_top | button.flexible_width
 
       button.addTarget(answer_controller, action: 'dismiss_view', forControlEvents: UIControlEventTouchUpInside)
     end

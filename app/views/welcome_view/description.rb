@@ -15,7 +15,7 @@ class WelcomeView::Description < UIView
         [self.frame.size.width - 110, 0],
         [110, 40]
       ]
-      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
+      button.autoresizingMask = button.flexible_left_right
 
       button.styleId = 'button_setup'
       button.setTitle('настройка', forState: UIControlStateNormal)
@@ -32,7 +32,7 @@ class WelcomeView::Description < UIView
         [self.frame.size.width/2 - 130, self.frame.size.height/2 - 150],
         [260, 60]
       ]
-      label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
+      label.autoresizingMask = label.flexible_all
 
       label.styleId = 'label_ruby_test'
       label.text = 'Руби Тест'
@@ -47,7 +47,7 @@ class WelcomeView::Description < UIView
         [260, 60]
       ]
 
-      label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
+      label.autoresizingMask = label.flexible_all
 
       label.styleId = 'label_by'
       label.text = 'BY'
@@ -65,7 +65,7 @@ class WelcomeView::Description < UIView
         [260, 60]
       ]
 
-      image.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
+      image.autoresizingMask = image.flexible_all
 
       image.contentMode = UIViewContentModeScaleAspectFill
     end

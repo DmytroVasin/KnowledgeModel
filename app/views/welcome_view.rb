@@ -9,7 +9,7 @@ class WelcomeView < UIView
       [[20, 30], [self.frame.size.width - 40 , self.frame.size.height - 95]],
       welcome_controller
     ).tap {|descr_view|
-      descr_view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      descr_view.autoresizingMask = descr_view.flexible_width_height
     }
 
     self.addSubview( z )
@@ -24,7 +24,7 @@ class WelcomeView < UIView
         [200, 41]
       ]
 
-      button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth
+      button.autoresizingMask = button.flexible_left_right | button.flexible_top | button.flexible_width
 
       button.setTitle('Начать', forState: UIControlStateNormal)
       button.styleId = 'start_button'

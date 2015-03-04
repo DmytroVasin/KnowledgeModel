@@ -56,7 +56,7 @@ class QuestionController < ApplicationController
       scroll_view.addObserver(self, forKeyPath: 'contentSize', options: NSKeyValueObservingOptionNew, context: '1')
 
       scroll_view.textAlignment = UITextAlignmentCenter
-      scroll_view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
+      scroll_view.autoresizingMask = scroll_view.flexible_width_height
     end
   end
 
