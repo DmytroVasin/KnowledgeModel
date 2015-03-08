@@ -5,17 +5,9 @@ class QuestionView < UIView
     super
     self.styleId = 'question_view'
 
-    question_wrapper = Question::Wrapper.alloc.initWithFrame(
-      [
-        [20, 30],
-        [self.frame.size.width - 40, self.frame.size.height - 95]
-      ]
-    ).tap{ |subview|
-      subview.autoresizingMask = subview.flexible_width_height
-      subview.addSubview(text_view)
-    }
+    interview_question = InterviewView.alloc.initWithFrame(self.frame, text_view)
 
-    self.addSubview( question_wrapper )
+    self.addSubview( interview_question )
     self.addSubview( answer_btn )
     self.addSubview( next_question_btn )
   end
@@ -39,7 +31,6 @@ class QuestionView < UIView
   def next_question_btn
     @next_question_btn ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       _start = @answer_btn.frame.size.width + 40
-
       _width = self.frame.size.width - _start - 20
 
       button.frame = [
@@ -52,7 +43,6 @@ class QuestionView < UIView
       button.styleId = 'next_question_btn'
 
       button.autoresizingMask = button.flexible_width | button.flexible_top
-
       button.addTarget(question_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
