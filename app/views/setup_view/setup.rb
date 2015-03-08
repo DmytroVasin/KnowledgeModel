@@ -74,7 +74,7 @@ class SetupView::Setup < UIView
 
 
       separator_line_view = UIView.alloc.initWithFrame([[0, result.frame.size.height - 1], [result.frame.size.width, 1]])
-      # Trick to colorize separator in last row; I dont know - how he drow it without my wish!
+      # Trick to colorize separator in last row; I dont know - he draw last line without my wish!
       separator_line_view.backgroundColor = if (indexPath.row != (SearchOption.count - 1))
         UIColor.colorWithRed(0.573, green:0.58, blue:0.58, alpha:1) #929494
       else

@@ -8,12 +8,12 @@ class QuestionView < UIView
     interview_question = InterviewView.alloc.initWithFrame(self.frame, text_view)
 
     self.addSubview( interview_question )
-    self.addSubview( answer_btn )
-    self.addSubview( next_question_btn )
+    self.addSubview( answer_button )
+    self.addSubview( next_question_button )
   end
 
-  def answer_btn
-    @answer_btn ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
+  def answer_button
+    @answer_button ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
         [20, self.frame.size.height - 53],
         [100, 41]
@@ -21,16 +21,15 @@ class QuestionView < UIView
 
       button.setTitle('Ответ', forState: UIControlStateNormal)
       button.styleClass = 'btn'
-      button.styleId = 'answer_btn'
 
       button.autoresizingMask = button.flexible_top
       button.addTarget(question_controller, action: 'get_answer_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 
-  def next_question_btn
-    @next_question_btn ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
-      _start = @answer_btn.frame.size.width + 40
+  def next_question_button
+    @next_question_button ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
+      _start = @answer_button.frame.size.width + 40
       _width = self.frame.size.width - _start - 20
 
       button.frame = [
@@ -40,7 +39,6 @@ class QuestionView < UIView
 
       button.setTitle('Вопрос', forState: UIControlStateNormal)
       button.styleClass = 'btn'
-      button.styleId = 'next_question_btn'
 
       button.autoresizingMask = button.flexible_width | button.flexible_top
       button.addTarget(question_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)

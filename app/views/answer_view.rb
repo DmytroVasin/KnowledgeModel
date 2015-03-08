@@ -6,20 +6,18 @@ class AnswerView < UIView
     self.styleId = 'answer_view'
 
     interview_answer = InterviewView.alloc.initWithFrame(frame, text_view)
-
     self.addSubview( interview_answer )
-    self.addSubview( back_to_question_btn )
+    self.addSubview( back_to_question_button )
   end
 
-  def back_to_question_btn
+  def back_to_question_button
     UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
-        [self.frame.size.width/2 - 150, self.frame.size.height - 55],
-        [300, 40]
+        [self.frame.size.width/2 - 167, self.frame.size.height - 53],
+        [334, 41]
       ]
 
       button.setTitle('Назад к вопросу', forState: UIControlStateNormal)
-      button.styleId = 'back_to_question_btn'
       button.styleClass = 'btn'
 
       button.autoresizingMask = button.flexible_left_right | button.flexible_top

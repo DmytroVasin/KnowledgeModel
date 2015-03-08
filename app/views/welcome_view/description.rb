@@ -2,6 +2,8 @@ class WelcomeView::Description < UIView
   def initWithFrame frame, controller
     super
     self.styleClass = 'main_view_wrapper'
+    self.frame = [[20, 30], [frame.size.width - 40, frame.size.height - 95]]
+    self.autoresizingMask = self.flexible_width_height
 
     self.addSubview( button_setup(controller) )
     self.addSubview( label_ruby_test )
@@ -10,7 +12,7 @@ class WelcomeView::Description < UIView
   end
 
   def button_setup controller
-    @button_setup ||= UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
+    UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
         [self.frame.size.width - 110, 0],
         [110, 40]
@@ -24,14 +26,9 @@ class WelcomeView::Description < UIView
   end
 
   def label_ruby_test
-    # CGRectZero WTF ??? Add frame size here
     @label_ruby_test ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.sizeToFit
-
-      label.frame = [
-        [self.frame.size.width/2 - 130, self.frame.size.height/2 - 150],
-        [260, 60]
-      ]
+      label.frame = label_bounds(self.frame)
       label.autoresizingMask = label.flexible_all
 
       label.styleId = 'label_ruby_test'
@@ -42,10 +39,7 @@ class WelcomeView::Description < UIView
   def label_by
     @label_by ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.sizeToFit
-      label.frame = [
-        [self.frame.size.width/2 - 130, @label_ruby_test.frame.origin.y + 130],
-        [260, 60]
-      ]
+      label.frame = label_bounds(@label_ruby_test.frame)
 
       label.autoresizingMask = label.flexible_all
 
@@ -57,17 +51,20 @@ class WelcomeView::Description < UIView
   def image_j_way
     img = UIImage.imageNamed('interface/j-way.png')
 
-    @j_way_image_view ||= UIImageView.alloc.initWithImage(img).tap do |image|
+    UIImageView.alloc.initWithImage(img).tap do |image|
       image.styleId = 'label_j_way'
-
-      image.frame = [
-        [self.frame.size.width/2 - 130, @label_by.frame.origin.y + 140],
-        [260, 60]
-      ]
+      image.frame = label_bounds(@label_by.frame)
 
       image.autoresizingMask = image.flexible_all
-
       image.contentMode = UIViewContentModeScaleAspectFill
     end
+  end
+
+  private
+  def label_bounds previous_frame
+    [
+      [self.frame.size.width/2 - 130, previous_frame.origin.y + 140],
+      [260, 60]
+    ]
   end
 end
