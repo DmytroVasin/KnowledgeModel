@@ -22,7 +22,7 @@ class AnswerView < UIView
       button.styleId = 'back_to_question_btn'
       button.styleClass = 'btn'
 
-      button.autoresizingMask = button.flexible_left_right | button.flexible_top | button.flexible_width
+      button.autoresizingMask = button.flexible_left_right | button.flexible_top
       button.addTarget(answer_controller, action: 'dismiss_modal', forControlEvents: UIControlEventTouchUpInside)
     end
   end
