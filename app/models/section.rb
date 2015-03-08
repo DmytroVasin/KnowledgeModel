@@ -1,4 +1,4 @@
-class Section
+class Section < Base
   def self.attr_list
     [:id, :name]
   end
@@ -6,23 +6,6 @@ class Section
 
   def self.all
     query = "SELECT #{table_attrs('s')} FROM sections s"
-    execute(query)
-  end
-
-  private
-  # DRY
-  def self.execute query
-    Database.instance.execute(query) { Section.new }
-  end
-
-  # DRY
-  def self.table_attrs table
-    # TODO: Refactoring
-    string = ''
-    attr_list.each do |x|
-      string += "#{table}.#{x}"
-      string += ', ' if x != attr_list[-1]
-    end
-    string
+    execute(query) { self.new }
   end
 end
