@@ -3,7 +3,7 @@ class SetupView < UIView
 
   def initWithFrame frame
     super
-    self.styleId = 'welcome_view'
+    self.styleId = 'app_wrapper'
 
     setup_view = SetupView::Setup.alloc.initWithFrame(frame)
     self.addSubview( setup_view )

@@ -3,7 +3,7 @@ class WelcomeView < UIView
 
   def initWithFrame frame
     super
-    self.styleId = 'welcome_view'
+    self.styleId = 'app_wrapper'
 
     welcome_view = WelcomeView::Description.alloc.initWithFrame(frame, welcome_controller)
     self.addSubview( welcome_view )

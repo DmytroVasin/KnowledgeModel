@@ -1,71 +1,56 @@
-#interview_task {
-  background-color: transparent;
-  font-size: 20px;
-  font-family: 'Verdana';
-  text-align: center;
-}
-
-.table_view_wrapper {
+#app_wrapper {
   background-color: #d9dadb;
 }
 
-#label_table_title {
-  text-align: center;
-  font-size: 20px;
-  font-family: 'Verdana';
-}
-
-.main_view_wrapper {
-  background-color: #d9dadb;
-  border-radius  : 15px;
-  border-width   : 1px;
-  border-color   : #929494;
-  border-style   : solid;
-  box-shadow: inset 1px 1px 3px #000;
-}
-
-#answer_view {
+#answer_wrapper {
   background-color: #999999;
 }
 
-#question_view {
-  background-color: #d9dadb;
+#interview_wrapper {
+  background-color: #d0d0d0;
+  border-radius: 15px;
+  border-width: 1px;
+  border-color: #929494;
+  border-style: solid;
+  box-shadow: inset 1px 1px 3px #000;
 }
 
-.btn {
-  color            : #282828;
-  background-color : linear-gradient(#f3f3f3, #aaaaaa);
-  border-width     : 1px;
-  border-color     : #929494;
-  border-style     : solid;
-  border-radius    : 10px;
-  font-size        : 20px;
-  font-family      : 'Verdana';
+#interview_task, #table_view_wrapper {
+  background-color: transparent;
 }
 
-#welcome_view {
-  background-image: url(interface/background.png);
+.label {
+  color: #000;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Verdana';
+  font-style: italic;
 }
 
 #label_ruby_test {
-  color: #000;
-  text-align: center;
   font-size: 50px;
-  /*font-family: 'Verdana';*/
 }
 
 #label_by {
-  color: #000;
-  text-align: center;
   font-size: 35px;
+}
+
+#label_table_title {
+  font-style: normal;
+}
+
+.btn {
+  color: #282828;
+  background-color: linear-gradient(#f3f3f3, #aaaaaa);
+  font-size: 20px;
   font-family: 'Verdana';
-  font-style: italic;
+  border-width: 1px;
+  border-color: #929494;
+  border-style: solid;
+  border-radius: 10px;
 }
 
 #button_setup {
   color: #4e729a;
-  text-align: center;
   font-size: 16px;
-  font-family: 'Verdana';
-  font-style: italic;
 }

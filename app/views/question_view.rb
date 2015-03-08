@@ -3,7 +3,7 @@ class QuestionView < UIView
 
   def initWithFrame frame, text_view
     super
-    self.styleId = 'question_view'
+    self.styleId = 'app_wrapper'
 
     interview_question = InterviewView.alloc.initWithFrame(self.frame, text_view)
 

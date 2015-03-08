@@ -1,7 +1,7 @@
 class SetupView::Setup < UIView
   def initWithFrame frame
     super
-    self.styleClass = 'main_view_wrapper'
+    self.styleId = 'interview_wrapper'
 
     self.frame = [[20, 30], [frame.size.width - 40, frame.size.height - 95]]
     self.autoresizingMask = self.flexible_width_height
@@ -19,6 +19,7 @@ class SetupView::Setup < UIView
 
       label.autoresizingMask = label.flexible_left_right
 
+      label.styleClass = 'label'
       label.styleId = 'label_table_title'
       label.text = 'Выберите темы:'
     end
@@ -40,7 +41,7 @@ class SetupView::Setup < UIView
     @myTableView.separatorInset = UIEdgeInsetsZero
     @myTableView.layoutMargins = UIEdgeInsetsZero
 
-    @myTableView.styleClass = 'table_view_wrapper'
+    @myTableView.styleId = 'table_view_wrapper'
 
     @myTableView.alwaysBounceVertical = false
     @myTableView.allowsSelection = false
@@ -81,7 +82,7 @@ class SetupView::Setup < UIView
       separator_line_view.backgroundColor = if (indexPath.row != (SearchOption.count - 1))
         UIColor.colorWithRed(0.573, green:0.58, blue:0.58, alpha:1) #929494
       else
-        UIColor.colorWithRed(0.851, green:0.855, blue:0.859, alpha:1) #d9dadb
+        UIColor.clearColor
       end
 
       separator_line_view.autoresizingMask = separator_line_view.flexible_width

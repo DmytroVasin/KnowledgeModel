@@ -3,7 +3,7 @@ class AnswerView < UIView
 
   def initWithFrame frame, text_view
     super
-    self.styleId = 'answer_view'
+    self.styleId = 'answer_wrapper'
 
     interview_answer = InterviewView.alloc.initWithFrame(frame, text_view)
     self.addSubview( interview_answer )
