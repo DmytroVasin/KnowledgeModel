@@ -3,6 +3,9 @@ class SetupView::Setup < UIView
     super
     self.styleClass = 'main_view_wrapper'
 
+    self.frame = [[20, 30], [frame.size.width - 40, frame.size.height - 95]]
+    self.autoresizingMask = self.flexible_width_height
+
     self.addSubview( table_view )
     self.addSubview( table_title )
   end
