@@ -11,18 +11,10 @@ class SetupView < UIView
   end
 
   def back_to_main_button
-    UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
-      button.frame = [
-        [self.frame.size.width/2 - 100, self.frame.size.height - 53],
-        [200, 41]
-      ]
-
-      button.autoresizingMask = button.flexible_left_right | button.flexible_top
-
-      button.setTitle('Сохранить', forState: UIControlStateNormal)
-      button.styleClass = 'btn'
-
-      button.addTarget(setup_controller, action: 'dismiss_modal', forControlEvents: UIControlEventTouchUpInside)
-    end
+    JWButton.default_button('Сохранить',
+      action: 'dismiss_modal',
+      frame: self.frame,
+      controller: setup_controller
+    )
   end
 end

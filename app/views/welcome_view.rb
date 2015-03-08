@@ -11,17 +11,10 @@ class WelcomeView < UIView
   end
 
   def start_button
-    UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
-      button.frame = [
-        [self.frame.size.width/2 - 167, self.frame.size.height - 53],
-        [334, 41]
-      ]
-
-      button.setTitle('Начать', forState: UIControlStateNormal)
-      button.styleClass = 'btn'
-
-      button.autoresizingMask = button.flexible_left_right | button.flexible_top
-      button.addTarget(welcome_controller, action: 'next_question_action', forControlEvents: UIControlEventTouchUpInside)
-    end
+    JWButton.default_button('Начать',
+      action: 'next_question_action',
+      frame: self.frame,
+      controller: welcome_controller
+    )
   end
 end

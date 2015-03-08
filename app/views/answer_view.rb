@@ -11,17 +11,10 @@ class AnswerView < UIView
   end
 
   def back_to_question_button
-    UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
-      button.frame = [
-        [self.frame.size.width/2 - 167, self.frame.size.height - 53],
-        [334, 41]
-      ]
-
-      button.setTitle('Назад к вопросу', forState: UIControlStateNormal)
-      button.styleClass = 'btn'
-
-      button.autoresizingMask = button.flexible_left_right | button.flexible_top
-      button.addTarget(answer_controller, action: 'dismiss_modal', forControlEvents: UIControlEventTouchUpInside)
-    end
+    JWButton.default_button('Назад к вопросу',
+      action: 'dismiss_modal',
+      frame: self.frame,
+      controller: answer_controller
+    )
   end
 end
