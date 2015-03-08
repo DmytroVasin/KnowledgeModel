@@ -32,7 +32,7 @@ class QuestionView < UIView
       button.styleId = 'answer_btn'
 
       button.autoresizingMask = button.flexible_top
-      button.addTarget(question_controller, action: 'get_answer', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(question_controller, action: 'get_answer_action', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 

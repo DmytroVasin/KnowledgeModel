@@ -1,8 +1,7 @@
 class AnswerView < UIView
   attr_accessor  :answer_controller
 
-  def initWithFrame frame, answer
-    # For what reason we put super?
+  def initWithFrame frame, text_view
     super
     self.styleId = 'answer_view'
 
@@ -10,9 +9,11 @@ class AnswerView < UIView
       [
         [20, 30],
         [self.frame.size.width - 40, self.frame.size.height - 95]
-      ], answer
-    )
-    answer_wrapper.autoresizingMask = answer_wrapper.flexible_width_height
+      ]
+    ).tap{ |subview|
+      subview.autoresizingMask = subview.flexible_width_height
+      subview.addSubview(text_view)
+    }
 
     self.addSubview( answer_wrapper )
     self.addSubview( back_to_question_btn )
@@ -31,7 +32,7 @@ class AnswerView < UIView
 
       button.autoresizingMask = button.flexible_left_right | button.flexible_top | button.flexible_width
 
-      button.addTarget(answer_controller, action: 'dismiss_view', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(answer_controller, action: 'dismiss_modal', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

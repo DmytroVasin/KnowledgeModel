@@ -1,88 +1,52 @@
-class QuestionController < ApplicationController
+class QuestionController < InterviewController
   def viewWillDisappear animated
-    set_content_size @text_question
+    set_content_size text_question_view
   end
 
   def viewWillAppear animated
-    set_content_size @text_question
+    set_content_size text_question_view
   end
 
   def loadView
-    load_random_question
-
     self.automaticallyAdjustsScrollViewInsets = false
 
-    @question_view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, text_question(@question.question))
-    @question_view.question_controller = self
-
-    self.view = @question_view
+    self.view = QuestionView.alloc.initWithFrame(UIScreen.mainScreen.bounds, text_question_view)
+    self.view.question_controller = self
 
     self.view.swipe(:left){ next_question_action }
     self.view.swipe(:up){ setup_action }
-    self.view.swipe(:right){ get_answer }
+    self.view.swipe(:right){ get_answer_action }
   end
 
-  def get_answer
-    answer_controller = AnswerController.new.tap {|controller|
-      controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
-      controller.answer = @question.answer
-    }
-
-    show_modal(answer_controller)
-  end
-
-  def text_question question
-    bound = UIScreen.mainScreen.bounds
-    @bound_x = bound.origin.x + 20
-    @bound_y = bound.origin.y + 20
-    @bound_w = bound.size.width - 80
-    @bound_h = bound.size.height - 135
-
-    @text_question ||= UITextView.alloc.initWithFrame(CGRectZero).tap do |scroll_view|
+  def text_question_view
+    @text_question_view ||= UITextView.alloc.initWithFrame(CGRectZero).tap do |scroll_view|
       scroll_view.styleId = 'label_question'
 
-      scroll_view.text = prepare_question(question)
+      scroll_view.text = prepare_question_text(random_question.question)
+      scroll_view.frame = task_bounds(UIScreen.mainScreen.bounds)
 
-      scroll_view.frame = [
-        [@bound_x, @bound_y],
-        [@bound_w, @bound_h]
-      ]
-
-      scroll_view.alwaysBounceVertical = false
+      scroll_view.showsHorizontalScrollIndicator = false
+      scroll_view.showsVerticalScrollIndicator = false
+      scroll_view.scrollEnabled = true
 
       scroll_view.editable = false
       scroll_view.selectable = false
 
-      scroll_view.addObserver(self, forKeyPath: 'contentSize', options: NSKeyValueObservingOptionNew, context: '1')
-
-      scroll_view.textAlignment = UITextAlignmentCenter
+      scroll_view.addObserver(self, forKeyPath: 'contentSize', options: NSKeyValueObservingOptionNew, context: nil)
       scroll_view.autoresizingMask = scroll_view.flexible_width_height
     end
   end
 
-  def observeValueForKeyPath keyPath, ofObject: object, change: change, context: context
-    set_content_size object
+  def get_answer_action
+    answer_controller = AnswerController.new
+    answer_controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal
+    answer_controller.answer = random_question.answer
+
+    show_modal(answer_controller)
   end
 
   private
-  def load_random_question
-    @question = Question.load_by_options
-  end
-
-  def set_content_size object
-    topCorrect = (object.bounds.size.height - object.contentSize.height)/2.0
-    topCorrect = ( topCorrect < 0 ? 0 : topCorrect )
-
-    @bottomOffset = CGPointMake(0, -topCorrect);
-
-    if object.contentSize.height < object.bounds.size.height
-      object.setContentOffset(@bottomOffset, animated: false)
-    end
-  end
-
-  def prepare_question question
-    # NOTE: 50 - magic number, because observer of the text_view is not trigger,
-    # when length is lower then one displayed string.
-    question.length < 50 ? "\n#{question}\n" : question
+  def random_question
+    @random_question ||= Question.load_by_options
   end
 end

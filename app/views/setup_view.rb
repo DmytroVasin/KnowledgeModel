@@ -29,7 +29,7 @@ class SetupView < UIView
       button.setTitle('Сохранить', forState: UIControlStateNormal)
       button.styleId = 'start_button'
 
-      button.addTarget(setup_controller, action: 'dismiss_view', forControlEvents: UIControlEventTouchUpInside)
+      button.addTarget(setup_controller, action: 'dismiss_modal', forControlEvents: UIControlEventTouchUpInside)
     end
   end
 end

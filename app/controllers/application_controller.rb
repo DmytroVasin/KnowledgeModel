@@ -11,11 +11,15 @@ class ApplicationController < UIViewController
   end
 
   private
+  def show_controller controller
+    self.navigationController.pushViewController(controller, animated: true)
+  end
+
   def show_modal controller
     self.navigationController.presentModalViewController(controller, animated: true)
   end
 
-  def show_controller controller
-    self.navigationController.pushViewController(controller, animated: true)
+  def dismiss_modal
+    self.dismissViewControllerAnimated(true, completion: nil)
   end
 end
