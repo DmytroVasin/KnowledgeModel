@@ -2,10 +2,10 @@
 
 2) Шаблоны проектирования ( паттерны ) - Эффективные способы решения характерных задач проектирования, в часности проектирования компьютерных програм. Паттерн не является законченным образцом проекта , который может быть прямо преобразован  в код, скорее это описание или образец для того как решить задачу, таким образом что бы это можно было использовать в различных ситуациях.
 
+3) Полиморфизм: Классы с одинаковой спецификацией могут иметь различную реализацию.
 3) Полиморфизм: Классы потомки могут изменять реализацию метода класса-предка сохраняя его интерфейс. Полиморфизм позволяет обрабатывать обьекты классов потомков так как буде-то это один обьект, не смотря на то, что реализация их методов может отличаться.
 
 ---------------------------------------------------
-
 Обьщие языковые знания:
 
 Назовите класс, который является родоначальником всех классов.
@@ -38,132 +38,104 @@ DSL - Domain Specific Language это API которое позволяет ра
 Руби обладает явная или неявная типизацией?
 Неявная так как явно-типизированные языки отличаются тем, что тип новых переменных / функций / их аргументов нужно задавать явно. А руби перекладывает эту задачу на интерпретатор.
 
+В чем разница между оператор/statement и выражение/expression в Руби?
+В Руби все операторы/statements являются выражение/expression, так как все операторы/statments возвращают значения.
 
-....................
+---------------------------------------------------
+Типы данных:
 
+Почему употребелние строковых литералов в циклах нежелательно?
+Для каждой строки создается новый обьект, даже если значение одинаково. Поэтому лучше использовать переменные или символы.
 
-Q: What does it mean to coerce an object? Why would you do it?
-A: To coerce an object means to force it into an expected type. One might do this in order to try and force an unknown object type into the expected type or format required by the operation. This is a common practice involved in duck typing.
+Класс String включает в себя модуль Enumerable?
+Нет
 
-Q: What is the difference between a statement and an expression in Ruby?
-A: All statements are expressions in Ruby since all statements return a value.
+Какой метод вы можете использовать для обхода по строке?
+String#each_char
 
-Data Types
+Какая разница между символьным литералом, таким как «?А» и строковым литералом «А»?
+Разницы нет, это обе строки.
 
-String
+Что такое символ/symbol?
+Символы являются скалярным значением обьекта. Их используют в качестве идентификаторов для отображения неизменяющихся строк что бы зафиксировать внутреннее значение.
 
-Q: Why might you want to avoid using string literals within loops?
-A: A new object is created for every string literal even when the values are identical. Consider using variables or symbols instead.
+Почему символы обычно используются в качестве хэш-ключей вместо строк?
+Строки мутабильны/mutable, а символы являются постоянными/immutable. Хотя Ruby (внутри) делает неизменной копию строки при использовании в качестве хеш-ключа, сравнение двух символов быстрее, чем сравнение двух объектов String. Это также условность.
 
-Q: Does String include the Enumerable module?
-A: No.
+Символы неизменяемые объекты. Назовите другие неизменняемые Ruby объекты.
+Fixnum
 
-Q: What method might you use to enumerate over a string?
-A: String#each_char
+Что происходит, когда значение становится слишком большим для Fixnum?
+Оно автоматически преобразуются в Bignum.
 
-Q: What is the difference between a character literal such as ?A and a string literal such as "A"?
-A: There is no difference.
+Назовите суперкласс/superclass Fixnum?
+Integer
 
-Symbol
-
-Q: Describe a symbol.
-A: Symbols are scalar value objects used as identifiers, mapping immutable strings to fixed internal values.
-
-Q: Why are symbols typically used as hash keys instead of strings?
-A: Strings are mutable while symbols are immutable. Though Ruby internally makes an immutable copy of a string when used as a hash key, comparing two symbols is faster than comparing two String objects. This is also a convention.
-
+Назовите суперкласс/superclass Integer?
 Numeric
 
-Q: Symbols are immutable objects. Name another immutable core Ruby object.
-A: Fixnum
+Как вы можете избежать ошибок округления в классе Numeric, которые возникают при использовании двоичной арифметики с плавающей точкой?
+Используя BigDecimal
 
-Q: What happens when a value becomes too big for Fixnum?
-A: It is automatically converted to a Bignum.
+Чем синтаксис «%W» отличается от «%w»  синтаксиса?
+С помощью «%W» можно определить массив, содержащий строковую интерполяцию. Это подобие двойных и одинарных кавычек.
 
-Q: What is the superclass of Fixnum?
-A: Integer
+Назовите синоним метода «Hash#key?»
+Hash#has_key?, Hash#include?, Hash#member?
 
-Q: What is the superclass of Integer?
-A: Numeric
+Как задать значение по умолчанию для хэша?
+Подставив значения в качестве аргументов «::new» при инициализации или изменив значения по умолчанию непосредственно с помощью метода «Hash#default». Также можно предоставить значение по умолчанию во время запроса при помощи «Hash#fetch».
 
-Q: What numeric class might you use to avoid the rounding error arising in the use of binary floating-point arithmetic?
-A: BigDecimal
+В какой последовательности итерируются значения в хеше?
+The order in which they were inserted. ??????????????????? Ассоциативные массивы в Ruby неупорядоченны: массивы могут иметь любой порядок элементов.
 
-Array
+Назовите синоним «Hash#[]=»?
+Hash#store
 
-Q: How does the %W syntax differ from the %w syntax?
-A: With %W it is possible to define an array containing string interpolation.
+Почему вы моежете безопасно использовать строку в качестве хэш-ключа?
+Потому что интерпретатор делает личную копию строки, используемой в качестве хеш-ключа.
 
-Hash
+В чем отличие «Hash#fetch» и «Hash#[]» при запросе значения у хэша?
+«Hash#fetch» предоставляет возможность обработки случая, когда в хэше ключа не существует
 
-Q: Name at least one synonym for Hash#key??
-A: Hash#has_key?, Hash#include?, Hash#member?
+Когда вам нужно использовать «Hash#rehash»?
+Если ключами хеша являются переменные, то может возникнуть ситуация, когда их значение меняется. Чтобы иметь доступ к ассоциированным с ними данным нужно вызвать данный метод, чтобы он привел ключи в соответствие с новым значеним переменных. Например, когда массив является ключем в хеше.
 
-Q: How might you specify a default value for a hash?
-A: Pass the default values as arguments to ::new on initialization or change the default directly with the method Hash#default. You may also provide a default at the time of query with Hash#fetch.
+Назовите два варианта использования диапазонов/Range?
+Сравнение, Итерация
 
-Q: Does Hash use #== or #eql? to compare hash keys?
-A: #eql?
+Как внести выражение/expression в литерал Regexp?
+Использование «{}», точно так же как и двойные кавычки в строке.
 
-Q: In what order are the values of a hash iterated?
-A: The order in which they were inserted.
+Назовите два варианта использования оператора «*»/splat?
+Сбор аргументов из списка параметров в массив. Расщипление массива на элементы или преобразование набора в массив элементов.
 
-Q: What is the synonym of Hash#[]=?
-A: Hash#store
+Какой единственный оператор принимает три операнда?
+Оператор условия «?:» ( Его иногда называют тернарный оператор стравнения «if»)
 
-Q: Why can you safely use a string as a hash key, even though a string is mutable?
-A: Because the interpreter makes a private copy of a string used as a hash key.
+Какой оператор должен быть определен в целях реализации модуля Сравнения/Comparable?
+<=>
 
-Q: Why might you use Hash#fetch over Hash#[] when querying values in a hash?
-A: Hash#fetch provides options for handling the case where a key does not exist in the hash.
+Какая разница между «==» и «equal?»?
+«==» - ввыполняет общий сравнительный анализ ( сравнение значений ) и вреализуется по-разному в отношении различных классов, а «equal?» определяется на «BasicObject» и сравнивает идентичность объекта ( вернет true, если только сравниваемые обьекты - это один и тот же обьект ). Таким образом, оператор «equal?» не должен быть перезаписан в подклассах.
 
-Q: When would you need to use Hash#rehash?
-A: After you mutate a mutable hash key.
+Какая разница между «==» и «===»?
+По отношениию к обьектам класса «Object» - идентичны, но «===» переопределен в классах «Range», «Regex», «Proc», что бы добиться более более выразительной семантики в операторе «Case»
 
-Range
+Какая разница между «==» и «eql?»?
+«eql?» выступает как альтернативное сравнение. Hash использует «eql?» для проверки хэш-ключ равенства. «eql?» в сравнении типов Numeric сравнивает не только значения но и классы. Если вы хотите расширить функционал «==» для простых типов(для которых эта функция переопределен) еще и проверкой на принадлежностью одному классу, то можно использовать «eql?»
 
-Q: What are two uses of ranges?
-A: comparison, iteration
+Какой оператор более приоритетный «&&» or «and»
+«&&»
 
-Regexp
+Какой оператор более приоритетный «&&» or «=»
+«&&»
 
-Q: How might you include an expression within a Regexp literal?
-A: Using #{} just like as in a double-quoted string literal.
+Какой оператор более приоритетный «and» or «=»
+«=»
 
-Q: What is the global variable for the last Regexp match?
-A: $LAST_MATCH_INFO equivalent to $~
-
-Operators
-
-Q: What are two uses of the splat operator?
-A: Explode or expand the elements of an array. Collect arguments of a parameter list into an array.
-
-Q: What is the only operator which accepts three operands?
-A: The conditional operator ?: (sometimes referred to as the ternary if operator).
-
-Q: Which operator must be defined in order to implement the Comparable module?
-A: <=>
-
-Q: What is the difference between #== and #equal??
-A: #== performs the generic comparison and is implemented differently across classes while #equal? is defined on BasicObject and compares object identity. Therefore, #equal? should not be overridden in subclasses.
-
-Q: What is the difference between #== and #===?
-A: #== performs the generic comparison while #=== performs case equality comparison and is useful for providing meaningful semantics in case statements.
-
-Q: What is the difference between #== and #eql??
-A: #eql? is sometimes an alternate equality. Hash uses #eql? to test for hash key equality. Numeric types perform type conversion across #== but not across #eql?, thus #eql? performs a stricter comparison than #== in that case.
-
-Q: Which binds more tightly? && or and
-A: &&
-
-Q: Which binds more tightly? && or =
-A: &&
-
-Q: Which binds more tightly? and or =
-A: =
-
-Q: Which binds more tightly? && or ||
-A: &&
+Какой оператор более приоритетный «&&» or «||»
+«&&»
 
 Control Structures
 
