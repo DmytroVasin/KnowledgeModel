@@ -137,172 +137,159 @@ Hash#store
 Какой оператор более приоритетный «&&» or «||»
 «&&»
 
-Control Structures
+Что такое модификаторы оператора (statement modifiers)?
+Условие, которое следует после выполняемой части оператора. (Например «x = 1 if a == true»)
 
-Q: What is a statement modifier?
-A: A condition which follows a statement such as with x = 1 if a == true
+Блок «while» опеределяет новую область видимости.
+Нет
 
-Q: Does a while block define a new scope?
-A: No.
+Поддерживает ли в Руби оператор «case» поведение fall-through? ( Выполняеться соответствующий условию блок, а затем выполнение продолжается до конца оператора. Что бы разрешить выполнение блока кода при нескольких совпадениях.)
+Нет
 
-Q: Does the case statement in Ruby have fall-through behavior?
-A: No.
+Блок «rescue» опеределяет новую область видимости.
+Нет
 
-Q: What is the difference between throw/catch and raise/rescue?
-A: throw and catch accept matching symbols as arguments and should be considered a control-flow structure where raise and rescue is used to raise and handle exceptions. throw and catch are not commonly used while exception handling with raise and rescue is used often.
+Назовите приемущества оператора «case» перед оператором «elsif»?
+Оператор «case» работает значительно быстрее «if» «elsif», и также более красивый при большом количестве сравнений.
 
-Q: Does a rescue block define a new scope?
-A: No.
+Назовите приемущества оператора «elsif» перед оператором «case»?
+Оператор Case может выглядеть очень запутанным при использовании нескольких значений подряд ( через запятую )
 
-Q: What are some advantages of a case statement versus repeated elsif statements?
-A: It shows intent. It DRY's out the condition.
+Назовите хотя бы два класса в который подключен модуль Enumerable.
+Array, Hash, Range, IO...
 
-Q: What are some disadvantages of a case statement versus repeated elsif statements?
-A: The statement is typically resistant to modification without a complete refactoring of the entire control structure. The case statement can be confusing if multiple comma-separated expressions are associated with a single when clause.
+Когда можно/нужно использовать в блоках синтаксис do/end в отличии от фигурных скобочек «{}»
+Обычно «do/end» синтаксис для блока используется для отображения много-строчных выражений. Также существует альтернативная конвенция: использовать синтаксис «фигурные скобки» для блоков, которые возвращают значение, а «do/end» синтаксис для блоков, которые как-то изменяют состояние системы и не возвращают значение.
 
-Blocks and Iterators
+Что такое итератор?
+Объект, который позволяет обходить элементы контейнера. В Ruby, итератором, считается любой метод, который использует оператор yield.
 
-Q: Name at least two classes which include the Enumerable module.
-A: Array, Hash, Range, IO...
+Назовите синоним Enumerable#include??
+Enumerable#member?
 
-Q: When might you use the do/end syntax versus using the curly bracket syntax for a block?
-A: The do/end syntax for a block is commonly used for multi-line statements. An alternate convention is to use curly bracket syntax for blocks that return a value while using do/end syntax for blocks that change the state of the system somehow and do not return a value.
+Является ли блок объектом?
+Нет, блок синтаксическая структура интерпретатора. Блок может быть преобразован в объект Proc.
 
-Q: What is an iterator?
-A: An object that allows traversal of the elements of the container. In Ruby, an iterator is typically considered any method that uses the yield statement.
+Назовите синоним Enumberable#collect?
+Enumberable#map
 
-Q: How do you define block-local variables within a block's parameter list?
-A: Variables that appear after a semicolon in a block's parameter list are guaranteed to be local to the block.
+Назовите синоним Enumberable#find?
+Enumberable#detect
 
-Q: What is the synonym of Enumerable#include??
-A: Enumerable#member?
+Назовите синоним Enumberable#select?
+Enumberable#find_all
 
-Q: Can a collection be modified while it is being iterated upon?
-A: Yes.
+Назовите противоположный метод для Enumberable#select?
+Enumberable#reject
 
-Q: Is a block an object?
-A: No. A block is a syntactic structure of the interpreter. A block can be converted to a Proc object.
+Назовите синоним Enumberable#inject?
+Enumberable#reduce
 
-Q: What is the synonym of Enumberable#collect?
-A: Enumberable#map
+Почему нужно использовать «each» а не «for/in»?
+«each» - принимает блок, таким образом определяет новую область видимости. «for/in» в свою очередь пропускает наружу последний итерируемый обьект. Так же «for/in» зависит от «each», что означает что «each» более фундаментальный аспект языка. Методы итераторы, такие как «each» читаются более естественно.
 
-Q: What is the synonym of Enumberable#find?
-A: Enumberable#detect
+Что произойдет, если блоку передать два аргумента, когда принимает он только один?
+Ничего. Только первый аргумент будет передан блоку.
 
-Q: What is the synonym of Enumberable#select?
-A: Enumberable#find_all
+Почему блок называется анонимным?
+Он не имеет названия. Он не существует вне его выполнения, если не преобразуется в объект Proc.
 
-Q: What is the opposite of Enumberable#select?
-A: Enumberable#reject
+Чем вызов блока отличаться от вызова метода?
+При вызове метода с большим количество аргументов Руби будет вызывать исключение. Блок будет просто игнорировать дополнительные аргументы.
 
-Q: What is the synonym of Enumberable#inject?
-A: Enumberable#reduce
+??????????????? Руби поддерживает перегрузку/overloading методов? (что это мать такое?)
+Нет
 
-Q: Why might you use #each instead of for/in?
-A: It's the "Ruby way" - an example of how Ruby defines methods that mimic natural language concepts. Iterator methods such as #each read more naturally. #each is a block so it defines a new variable scope. for/in depends on the existence of #each which implies that #each is a more fundamental aspect of the language.
+Как вы можете определить присутствие метода у обьекта?
+Object#respond_to? или Module#method_defined?
 
-Q: What happens if a block is passed two arguments but only accepts one argument?
-A: Nothing. Only the first argument will be passed to the block.
+Что значит self?
+Текущий объект
 
-Q: How is a block anonymous?
-A: It doesn't have a name. It doesn't exist beyond it's execution unless converted to a Proc object.
+Что означает знак «!» в конце метода?
+То, что надо работать с таким методом очень осторожно. Методы с таким наименованием, как правило, изменяют объект-приемник.
 
-Q: How does block invocation differ from method invocation?
-A: Ruby will throw an exception if more than the expected number of arguments are passed to a method. A block will simply ignore the extra values.
+Что такое метод мутатор?
+Метод, который изменяет внутреннее состояние объекта-приемника.
 
-Methods
+Является ли метод объектом?
+Нет, однако, объект Method конечно, объект
 
-Q: Does Ruby support method overloading?
-A: No.
+Что такое метод-предикат в контексте конвенций наименований методов Руби?
+Это метод, который отвечает на вопрос, поставленный именем метода. Предикаты обычно возвращают булевое значение.
 
-Q: How might you test the presence of a method?
-A: Object#respond_to? or Module#method_defined?
+Являются ли методы экземпляра публичными/public или приватными/private?
+По умолчанию они являются открытыми/public, но вы можете изменить их видимость при помощи Module#private, Module#protected или снова сделать их открытыми/public Module#public.
 
-Q: What is the meaning of self?
-A: The current object.
+Когда нужно явно использовать оператор «return»?
+Для преждевременного возврата из метода
 
-Q: What does a bang ! at the end of a method signify?
-A: That it should be with caution. Methods with this naming convention typically perform a mutation on the receiver object.
+Зачем нужно использовать alias?
+Если нужно создать синоним для уже существующего метода, который является более читаемым или если необходимо добавление функциональности в существующий метод.
 
-Q: What is a mutator method?
-A: A method which alters the internal state of the object receiver.
+Возможно ли вызвать приватный метод обьекта получателя не из области видимости этого обьекта.
+Да, Object#send
 
-Q: Is a method an object?
-A: No, however, a Method object is of course, an object.
+Как можно предотвратить обьект от будующих изменений?
+«#freeze»
 
-Q: What is a predicate in the context of Ruby method naming conventions?
-A: A method that answers a question posed by the method invocation or method name. Predicates typically return a boolean.
+Чем вызов приватного/private метода, отличается от вызова публичного/public метода в рамках своего класса?
+Приватный/Private метод должен быть вызван «функциональном» стиле, без явного указания обьекта-приемника, или текущего обьекта «self»
 
-Q: Are instance methods public or private?
-A: They are public by default. You can change their visibility using Module#private, Module#protected, or back again using Module#public.
+Могут ли методы начинаться с большой буквы?
+Да, но конвенция запрещает это делать
 
-Q: When might you explicitly use the return statement.
-A: To return from a method prematurely.
+Назовите отличия приватного/private от защищенного/protected метода.
+Закрытый метод является внутренним по отношению к реализации класса, и он может быть вызван только другими экземплярами методов этого класса (или его подклассов). Подразумевается, что закрытые методы вызываются в отношении self-объекта и не могут быть вызваны в отношении объекта явным образом. Если «m» является закрытым методом, то его можно вызвать в функциональном стиле, как «m». Вызвать его в форме «оbj.m» или даже «self.m» невозможно. Защищенный метод похож на закрытый в том смысле, что он может быть вызван только из реализации класса или его подклассов. От закрытого метода он отличается тем, что может быть вызван для любого экземпляра класса в явном виде и не ограничен всего лишь неявным вызовом в отношении self-объекта.
 
-Q: Why might you want to alias a method?
-A: To create a synonym for an existing method that is more readable or appropriate in the context of some problems or to add functionality to an existing method.
+Что такое метод Singleton?
+Метод, который доступен только на одном объекте.
 
-Q: How might you send a message to a private method of a receiver object from outside the scope of the receiver object?
-A: Object#send
+Как «return» из метода отличается от «return» из блока?
+«return» из метода приводит к возврату из метода. «return» из блока приводит к возврату из метода, который лексически охватывает блок.
 
-Q: How would you typically prevent future modifications to an object?
-A: #freeze
+Методы класса публичные/public или приватные/private?
+По умолчанию они являются публичными/public. Но вы можете изменить их область видимости при помощи Module#private_class_method или сделать их публичными - Module#public_class_method.
 
-Q: How is the invocation of a private method different than the invocation of a public method from within its defining class?
-A: It must be referenced in a functional manner without an explicit receiver object and not on the class object itself or on the current object self.
+Если метод не содержит выражений/expression возвратит ли он значение?
+Да, вернет «nil»
 
-Q: Can method names be capitalized?
-A: Yes, but the convention is that they are not.
+Если метод объявлен вне определения класса или модуля на верхнем уровне, где он будет находиться/определяться?
+Он будет приватным методом инстанс-обьекта класса Object, специального обьекта «main»
 
-Q: What is the difference between private and protected methods?
-A: A private method can only be called by any instance methods of the defining class or any subclasses and must be invoked in a functional style and not explicitly on self such as with self.my_method. A protected method may be explicitly invoked by any instance of the defining class, and is not restricted to implicit invocation on self.
+Каково происхождение ключевых слов public / private / protected?
+Это приватные инстанс-методы класса «Module». Так как Class подкласс Module, эти методы могут быть вызваны без явного вызова «self» обьекта.
 
-Q: What is a singleton method?
-A: A method that is available only on a single object.
+Как определяется приватный метод класса?
+Определяется метод класса и вызывается «Module#private_class_method» с символом имени метода класса вкачестве аргумента
 
-Q: How does return differ from within a method than from within a block?
-A: return within a method returns from the method. return within a block returns from its lexically enclosing method.
+Назовите способ «отключения» метода.
+«undef method_name», «Module#remove_method», «Module#undef_method»
 
-Q: Are class methods public or private?
-A: They are public by default. You can change their visibility using Module#private_class_method and back again using Module#public_class_method.
+В чем отличие методов «Module#remove_method» и «Module#undef_method»?
+«Module#remove_method» удалит определение метода из класса, но Руби все еще будет искать определение данного метода в суперклассах или миксинах. «Module#undef_method» предотвращает вызов данного метода в рамках текущего класса.
 
-Q: Does a method return a value if it does not contain an expression?
-A: Yes, it returns nil.
+Поддерживает ли руби «обязательные именованные аргументы»?
+Да. При определении метода в именованные аргументах можно не указывать значение по умолчанию, и если при вызове метода они не будут заданы, будет возбуждена ошибка.
 
-Q: If a method is declared outside a class or module definition at the top level, where does it live?
-A: As a private instance method of Object, whose value of self resolves to the special "main" object.
+Назовите два различных Proc обьекта.
+proc и lambda
 
-Q: What is the origin of the "keywords" public, private, and protected?
-A: They are instance methods of the Module class. Since Class subclasses Module, these methods can be invoked without an explicit reference to self such as with self.private.
+Что вы можете сказать об аргументе метода, который начинается с «&»?
+Это блок кода, который можно передать любому методу в качестве неявного последнего аргумента. Методу можно передать только один блок. Он всегда идет в самом конце. Его можно задать при вызове любого метода, независимо от того, указаны в определении метода аргументы или нет.
 
-Q: How do you define a private class method?
-A: Define the class method and call Module#private_class_method with an argument as a symbol of the class method name.
+В чем отличие proc от lambda?
+«Return» в объектах «proc» приводит к выходу из вызывающего метода, а return из «lambda»-объектов приводит к выходу из самого «lambda»-объекта. У «proc» есть гибкость при задании аргументов, он закрывает глаза на недостачу и даже на избыток аргументов, а «lambda» - нет.
 
-Q: Name at least two ways to disable methods.
-A: undef method_name, Module#remove_method, Module#undef_method
+Должен ли обьект быть proc-обьектом, что бы знак «&» добавлялся к нему в списке параметров?
+Нет, «&» добавляется перед каждый обьектом, который отвечает на метод «to_proc»
 
-Q: What is the difference between Module#remove_method and Module#undef_method?
-A: Module#undef_method prevents any invocation of the method through an instance of the class, while Module#remove_method will remove the method definition from the class, but not prevent inherited methods of the same name from being invoked.
+Какое отличие в вызове Proc и lambda?
+lambda больше похожи на обычный метод и поэтому накладывают дополнительные ограничения на входные параметры: если lambda объявлена с двумя параметрами - то при вызове на вход должно быть передано именно 2 параметра, в противном случае будет сгенерировано иключение ArgumentError, в случае Proc-а лишние параметры будут отброшены, а недостающие заполнены значением nil.
 
-Q: Explain how Ruby syntax supports keyword arguments in parameters lists?
-A: You can leave off the curly brackets from a hash in a parameter list, assuming it is the last argument in the list.
 
-Procs and Lambdas
+------------------------------------------------------------------------------------------------------------
 
-Q: What are the two varieties of Proc objects?
-A: Procs and lambdas.
-
-Q: What can be said about a method argument that is prefixed with &?
-A: It will refer to the calling block as a named Proc object. It must be the last argument in the parameter list.
-
-Q: What is the main difference between procs and lambdas?
-A: Calling a lambda is more akin to invoking a method where a return statement in a lambda will return from the lambda itself, instead of returning from the lexically enclosing method, as procs do. Adding to this notion, lambdas must be invoked with the exact number of arguments such as is required by method invocation, whereas procs are more flexible in receiving arguments.
-
-Q: Does an object have to be a Proc object for a & to be prefixed to it in a parameter list?
-A: No, & can appear before any object having a #to_proc method.
-
-Q: What is the difference between Proc invocation and lambda invocation?
-A: A block must be associated with lambda invocation. Lambdas must be invoked with the exact number of arguments such as is required by method invocation, whereas procs are more flexible in receiving arguments.
 
 Q: When might you encounter a LocalJumpError?
 A: You might typically encounter this exception when attempting to yield when no block is given. You might also encounter this exception when attempting to return from a method that has already returned such as if you attempt to return from a Proc object whose lexically enclosing method has already returned.
