@@ -462,7 +462,7 @@ class << self
 «Kernel»
 
 Что такое $LOAD_PATH?
-Это предопределенная переменная ( «$:» синоним к «$LOAD_PATH» ), которая представляет собой массив, в котором содержаться имена каталогов и в котором при загрузке файлов производят поиск методы «load» и «require». В начальном состоянии путь загрузки содержит пути к стандартной библиотеке Ruby.
+Это предопределенная переменная ( «$:» синоним к «$LOAD_PATH» ), которая представляет собой массив, в котором содержаться имена каталогов и в котором при загрузке файлов производят поиск методы «load» и «require». В начальном состоянии «путь загрузки» содержит пути к стандартной библиотеке Ruby.
 
 В чем отличие Kernel#require от Kernel#load?
 «Kernel#require» не требует указывать расширение файлов и не загружает один и тот же файл дважды.
@@ -470,113 +470,86 @@ class << self
 Имеют ли загруженные припомощи Kernel#require или Kernel#load файлы доступ к локальным переменным текущего файла?
 Нет
 
------------------------------------------------------------------------------------
+В чем отличие Kernel#require от Kernel#require_relative?
+Kernel#require_relative игнорирует «путь загрузки», и производит поиск библиотеки относительно текущего файла.
 
+Что делает Kernel#autoload?
+Предоставляет ленивую загрузку / lazy-loading файла. Загружает файл ( используя Kernel::require ) при первом обращении к константе.
 
-Q: What is the difference between Kernel#require and Kernel#require_relative?
-A: Kernel#require_relative ignores the load path.
+Что делает File::expand_path?
+File::expand_path принимает в качестве первого аргумента путь и возвращает строку с его абсолютным значением. ( Если второй аргумент не задан, то File::expand_path возвращает абсолютный путь до аргумента относительно исполняемого каталога (того, где запускаем файл). Второй аргумент - это точке отсчёта, относительно которой будет вычисляться абсолютное значение пути.)
 
-Q: What does Kernel#autoload do?
-A: Allows lazy-loading of files when a constant assigned to a file is first referenced.
+Назовите хотя бы один метод класса Dir, который может быть использован для обхода / итерации всех файлов в дирректории.
+Dir::entries, Dir::foreach, Dir#each
 
-Files
+Что такое IO обьект?
+IO обьект - это инстанс класса IO, который может быть использован для «чтения» или «записи» бинарных данных «в» или «из» файла.
 
-Q: What does File::expand_path do?
-A: Converts a relative path to a fully qualified path.
+$LOAD_PATH включает в себя дирректорию с установленными Гемами / RubyGems ?
+Да
 
-Q: What method(s) in class Dir can be used to list the contents of a directory?
-A: Dir::entries, Dir::foreach, Dir#each...
+Если установленно более одной версии гема, то какая версия будет использоваться?
+Будет использоваться гем с самым большим номером версии
 
-Q: What is an IO object?
-A: An IO object is an instance of class IO that can be used for reading or writing binary data to and from a file.
+Каким будет обьект, если он получил значение из недоверенного обьекта / «tainted»?
+Он будет тоже помечен (установленн флаг) как «tainted»
 
-Gems
+Какой по умолчанию стоит уровень $SAFE?
+0
 
-Q: Are RubyGems installation directories included in $LOAD_PATH?
-A: Yes.
+Что произойдет, когда вы попытаетесь уменьшить уровень $SAFE?
+уровень $SAFE не может быть уменьшен - он может быть только увеличен
 
-Q: If more than one version of a Gem is installed, which version will be used?
-A: The Gem with the highest version number.
+Назовите разницу между taint и trust?
+Теперь эти методы унифицированы и выставляют один и тот же флаг. Более предпочтительным является #tainted?, а при вызове #untrusted? будут появляться ворнинги: «untrust is deprecated and its behavior is same as taint»
 
-Security
+Какое исключение будет вызванно, если метод попытаться дернуть с не правильным количеством параметров?
+ArgumentError
 
-Q: What can you say about objects derived from tainted objects?
-A: They will also be tainted.
+Какое исключение будет вызванно, если метода не существует?
+NoMethodError
 
-Q: What is the default $SAFE level?
-A: 0
+Назовите родительский класс класса StandardError?
+Exception
 
-Q: What happens when you attempt to lower the $SAFE level?
-A: The $SAFE level cannot be lowered; it can only be raised.
+Что по умолчанию делает BasicObject#method_missing?
+Бросает исключение NoMethodError
 
-Q: What is the difference between taint and trust?
-A: Taint is derived from the environment such as the command line, environment variables, files, sockets, etc..., while trust is derived from the $SAFE level of the originating code. Untrusted objects are both untrusted and tainted.
+Что произойдет, если вы попытаетесь переопределить «BasicObject#__send__»?
+Руби вызовет предупреждение: «warning: redefining `__send__' may cause serious problems»
 
-Exceptions
+В чем отличие «to_s» от «inspect»?
+«inspect» это тоже самое что и «to_s». Лишь некоторые классы переопределяют «inspect», что бы предоставить более полезную информацию для отладки.
 
-Q: What error is raised if a method is passed the wrong number of arguments?
-A: ArgumentError
+В чем отличие «puts» от «p»?
+«p» конвертирует обьект к строке при помощи метода «inspect», результат возврата - конвертированное значение. «puts» использует «to_s» и возвращает «nil».
 
-Q: What error is raised if method name resolution fails?
-A: NoMethodError
+В чем отличие «puts» от «print»?
+«puts» добавляет символ новой строки к своему выводу.
 
-Q: The superclass of StandardError is __.
-A: Exception
+Какая глобальная переменная указывает на последнее вызванное исключение?
+$ERROR_INFO или его синоним $!
 
-Q: What does the default implementation of BasicObject#method_missing do?
-A: Raises a NoMethodError.
+Как вы можете получить текущее состояние стека вызова?
+Exception#backtrace (состояние на момент вызова исключения), Thread.current.backtrace (текущее состояние), Kernel#caller ( массив строк ) или Kernel#caller_locations ( тоже самое, что и Kernel#caller, только возвращает массив специальных обьектов, у которых есть методы которые могут предоставить спец. информацию про стрек вызова)
 
-Q: What happens if you attempt to redefine BasicObject#__send__?
-A: Ruby issues a warning.
+Что возвращает метод «Kernel#__method__»?
+Имя текущего метода в качестве символа
 
-Debugging
+Назовите синоним метода «Kernel#__method__»?
+Kernel#__callee__ Отличие лишь в том, что «__callee__» возвращает имя алиаса ( если вызов идет через alias ).
 
-Q: What is the difference between #to_s and #inspect?
-A: #inspect is the same as #to_s, except some classes redefine #inspect to provide output that is more helpful for debugging.
+Где в обьектной модели находяться фигурные скобочки ( {} ), которые определяют литерал хеша?
+Их не существует в обьектной можели - это функция интерпретатора
 
-Q: What is the difference between #puts and #p?
-A: #p converts objects to strings with an #inspect method and returns argument(s) as a result (useful to inject directly into the method argument list). #puts uses #to_s and returns nil.
+Какое кодирование / encoding использует MRI по умолчанию?
+«UTF-8»
 
-Q: Which Ruby interpreter option enables debugging?
-A: -d / --debug
+Как руби понимает, что сеттер метод: такой как - «def []=(key, value)» должен быть вызван как «test[:b] = 4»
+Это синтаксическое изменение производит сам интерпретатор / interpreter.
 
-Q: What is the global variable for the last exception raised?
-A: $ERROR_INFO equivalent to $!
+Какая глобальная константа позволяет получить доступ к аргументам заданным из командной строки?
+ARGV
 
-Q: How can you obtain the current state of the call stack?
-A: Using Exception#backtrace (state at exception raise), Thread.current.backtrace (current state) or Kernel#caller (does not include current line)
-
-Q: What does Kernel#__method__ return?
-A: The name of the currently executing method as a symbol.
-
-Q: What is the synonym of Kernel#__method__?
-A: Kernel#__callee__ (the difference since Ruby 2.0 is that __callee__ returns the name of an aliased method, if any).
-
-The Ruby Environment and the Interpreter
-
-Q: What is the difference between #puts and #print?
-A: #puts appends a newline character to the output. #print prints a value of special variable $_ when called without arguments.
-
-Q: Which Ruby interpreter option allows running of one-line scripts?
-A: -e
-
-Q: Where do the curly brackets to define a hash literal {} exist in the object model?
-A: It does not exist within the object model - it is a function of the interpreter.
-
-Q: What is the default encoding in MRI?
-A: UTF-8
-
-Q: How does Ruby know that a setter method such as X#[]= should be called in the expression x.field = []?
-A: It is a syntactical conversion in the interpreter.
-
-Q: What is the global constant to access arguments specified on the command line?
-A: ARGV
-
-Q: Which Ruby interpreter option enables warnings about deprecated or problematic code?
-A: -w
-
-Q: In MRI, which objects are not subject to garbage collection?
-A: Symbols, but in version 2.2 was implemented symbol GC.
-
-Q: What module in the standard library enables English language alternatives to terse global variables?
-A: English
+В MRI какие обьекты не подпадают под сборку мусора / garbage collection?
+Символы, но в руби 2.2 был реализован символьный сборщик мусора / symbol GC ( инкрементальный сборщик мусора / incremental GC) )
