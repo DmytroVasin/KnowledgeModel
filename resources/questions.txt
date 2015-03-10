@@ -5,6 +5,13 @@
 3) Полиморфизм: Классы с одинаковой спецификацией могут иметь различную реализацию.
 3) Полиморфизм: Классы потомки могут изменять реализацию метода класса-предка сохраняя его интерфейс. Полиморфизм позволяет обрабатывать обьекты классов потомков так как буде-то это один обьект, не смотря на то, что реализация их методов может отличаться.
 
+break vs next vs return ...
+
+Фабричный метод:
+Q: What is a factory method?
+A: An initialization method that creates specialized instances of a class.
+
+
 ---------------------------------------------------
 Обьщие языковые знания:
 
@@ -87,7 +94,7 @@ Hash#has_key?, Hash#include?, Hash#member?
 Подставив значения в качестве аргументов «::new» при инициализации или изменив значения по умолчанию непосредственно с помощью метода «Hash#default». Также можно предоставить значение по умолчанию во время запроса при помощи «Hash#fetch».
 
 В какой последовательности итерируются значения в хеше?
-The order in which they were inserted. ??????????????????? Ассоциативные массивы в Ruby неупорядоченны: массивы могут иметь любой порядок элементов.
+Hash упорядоченная коллекция состоящая из пар ключ значение. Ruby запоминает в каком порядке добавлялись ключи, поэтому можно узнать какой элемент являеться последним в хеше
 
 Назовите синоним «Hash#[]=»?
 Hash#store
@@ -287,239 +294,184 @@ proc и lambda
 Какое отличие в вызове Proc и lambda?
 lambda больше похожи на обычный метод и поэтому накладывают дополнительные ограничения на входные параметры: если lambda объявлена с двумя параметрами - то при вызове на вход должно быть передано именно 2 параметра, в противном случае будет сгенерировано иключение ArgumentError, в случае Proc-а лишние параметры будут отброшены, а недостающие заполнены значением nil.
 
+Когда вы можете получить «LocalJumpError?»
+Вы можете получить данный вид исключения, попытавшись вызвать «yield» когда блок не был задан. Так можно поймать это исключение, попытавшись сделать return из метода который уже делает return, тоесть если вы захотите вызвать return из Proc обьекта, чей лексический метод уже возвращает значение ( возвращает данный proc обьект ).
 
-------------------------------------------------------------------------------------------------------------
+Опишите замыкание/closure в Руби.
+Замыкание это обьект, который создается во время работы программы. Из тела этого обьекта доступны все переменные, которые были в контексте на момент создания замыкания
 
+Переменые определенные в замыкании доступны после выхода из замыкания?
+Нет. Переменные, определённые в замыкании, остаются для него локальными!
 
-Q: When might you encounter a LocalJumpError?
-A: You might typically encounter this exception when attempting to yield when no block is given. You might also encounter this exception when attempting to return from a method that has already returned such as if you attempt to return from a Proc object whose lexically enclosing method has already returned.
+Возможно ли поменять контекст замыкания в Руби?
+Да, контекст замыкания можно поменять используя метод «binding»
 
-Closures
+Константы публичные/public или приватные/private?
+Публичные/Public
 
-Q: Describe a closure in Ruby.
-A: A closure is an object that is both an invocable function together with a variable binding. The object retains access to the local variables that were in scope at the time of the object definition.
+Что произойдет если вы попытаетесь обьявить константу класса из вне этого класса?
+Константа будет определена, так как константы являются публично доступными и публично назначаемыми.
 
-Q: Does a closure in Ruby retain variables by value or by reference?
-A: By reference; the closure also extends the lifetimes of its variables.
+????????????????????????????
+Чем отличаются переменные инстанса (instance variable) от переменных класса (class variable)?
+Переменная класса «вызывается» в контексте обьекта класса, переменная инстанса «вызывается» в контексте инстанс метода. Переменная инстанса не может быть вызвана из вне инстанс метода.
 
-Q: A closure's reference to its variables is said to be dynamically bound. What does this mean?
-A: The values of the variables are resolved when the Proc object is executed.
+Почему имя класса начинаеться с большой буквы?
+Потому что ключевое слово «class» создает новую константу, которая ссылаеться на класс. А константы начинаються с большой буквы.
 
-Q: Is it possible to alter a closure?
-A: Yes, the binding of a closure can be altered using #binding.
+«initialize» это метод класса (class method) или инстанса (instance method)?
+Метод инстанса (instance method)
 
-Method Objects
+В чем отличие инстансной переменной класса от переменной класса? (Инстансная переменная класса где экземпляр сам класс)
+Инстансная переменная класса это инстансная переменная класса. Инстансная переменная класса не может быть использована (вызвана) внутри методов экземпляра класса.
 
-Q: What must you first do before you can invoke an UnboundMethod object?
-A: Bind it to a receiver object using UnboundMethod#bind.
+Что такое singleton?
+Класс который может иметь один(ограниченное число) инстанс(ов).
 
-Q: Are method objects closures?
-A: No.
+Как в руби создать singleton?
+Подключив модуль Singleton.
 
-Q: How do you obtain a Method object from an existing module/class?
-A: Using Object#method
+Метод «initialize» публичный / public или приватный / private?
+По умолчанию метод «initialize» приватный / private
 
-Q: How do you obtain an UnboundMethod object from an existing module/class?
-A: Using Module#instance_method
+Что делает метод «Class#allocate» ?
+Выделяет место для нового инстанса класса. Возвращаемый объект является экземпляром класса
 
-Constants
+Что такое eigenclass / metaclass / синглтон-класс?
+Синглтон-методы объекта (self.some_method) являются методами экземпляра (instance methods) анонимного класса (eigenclass), связанного с этим объектом
 
-Q: Are constants public or private?
-A: Public.
+Какое отношение методы класса(class methods) имеют к методам синглтона (singleton methods)?
+Методы класса(class methods) это методы синглтона (singleton methods) анонимного класса ассоциируемого с этим классом
 
-Q: What happens if you attempt to define a constant on a class from outside the class?
-A: It defines successfully since constants are publicly accessible and assignable.
+Что значит «Class::new», где «Class» это класс «Class»?
+Это метод класса обьекта «Class» который создает новые классы
 
-Q: What happens to a constant which is not assigned?
-A: It does not exist.
+Если в классе А обьявлен метод класса «m», и класс Б наследуеться от класса А, будет ли класс Б иметь доступ к классу «m»?
+Нет, наследование не дает возможности доступа к методам или переменным класса другого подкласса.
 
-Classes
+????????????
+Наследуются ли eigenclass-ы ( metaclass-ы ) ?
+Metaclass-ы обьектов наследуются от метакласса суперкласса обьекта класса. ->>>>>>>>>>>>>> Metaclass инстанс-обьекта стоят отдельно, и не наследуются от какого-либо другого класса.
 
-Q: What is the difference between an instance variable and a class variable?
-A: A class variable is evaluated in reference to the class object created by the enclosing class definition while an instance variable is evaluated in reference to self. Instance variables cannot be referenced outside of instance methods.
+Назовите различия между «Object#dup» и «Object#clone»?
+«Object#clone» копирует даже «frozen» обьекты и любые singleton - методы обьекта, а «Object#dup» - нет.
 
-Q: Why must a class name begin with a capital letter?
-A: Because the class keyword creates a new constant that refers to the class and constants begin with a capital letter.
+Назовите две главные функции/фичи модулей в руби?
+Миксины / mixins, и пространство имен / namespaces
 
-Q: Is #initialize an instance method or a class method?
-A: An instance method.
+Могут ли модули наследоваться?
+Нет
 
-Q: What is the difference between a class variable and a class instance variable?
-A: Class instance variables are instance variables of a class. Class instance variables cannot be used within instance methods.
+Что происходит при подключении (include) модуля к классу?
+Инстанс-методы (instance methods) модуля становятся доступными в качестве инстанс-методов (instance methods) класса. Проще говоря - «include» добавляет методы модуля объекту.
 
-Q: What is a singleton?
-A: A class having only a single instance.
+Что происходит при подключении (extends) модуля к классу?
+Инстанс-методы (instance methods) модуля становятся методами-синглтона класса. ( методами класса ). Проще говоря - «extend» вызывает «include» для синглтон-класса объекта.
 
-Q: How might you create a singleton?
-A: By including the Singleton module.
+Назовите «superclass» класса «Class»
+«Module»
 
-Q: Can you define accessor methods for class instance variables?
-A: Yes, if they are defined as singleton methods of the class.
+Почему название модуля начинается с большой буквы?
+Потому что ключевое слово «module» создает новую константу, которая ссылаеться на класс. А константы начинаються с большой буквы.
 
-Q: Can classes be nested?
-A: Yes.
+Как можно проверить был ли подключен модуль к обьекту или нет?
+Используя «is_a?». Например: «my_obj.is_a? MyModule»
 
-Q: Is #initialize public or private?
-A: Private by default.
+Что делает «Module#module_function»
+Он создает копию указанного метода с возможностью вызывать этот метод в качестве метода модуля и, при подключении модуля к классу, становиться доступен каждому инстансу класса.
 
-Q: What does Class#allocate do?
-A: It creates an uninitialized instance of a class.
+Что такое «Struct» в Руби?
+Это особый класс в Руби, который создает специфические классы содержащие только набор переменных и методы доступа к ним. Такие классы называются структурными шаблонами (structure templates).
 
-Q: What is an eigenclass?
-A: An anonymous class associated with an object. An object's singleton methods are instance methods of its associated eigenclass.
+Можем ли мы добавить свои методы в «Struct»?
+Да
 
-Q: What is the relationship between singleton methods and class methods?
-A: Class methods are singleton methods of the eigenclass associated with the class object.
+Чем отличаеться «Struct» от «OpenStruct»?
+«OpenStruct» намного медленнее чем обычный «Struct» или класс и использует намного больше памяти. «OpenStruct» инициализирует обьект класса «OpenStruct», «Struct» создает класс. «OpenStruct» позволяет добавлять атрибуты «на лету».
 
-Q: What is Class::new?
-A: A class method of the Class object which creates new classes.
+В чем отличие «Object#is_a?» и «Object#instance_of?»
+«Object#instance_of?» игнорирует наследование и подмешивание, т.е. возвращает true - если обьект являеться инстансом заданного класса
 
-Q: If Class B is nested within Class A, and there exists a class method on A, does Class B then have access to this instance method on Class A?
-A: No. Nesting one class within another does not give the inner class any special access to the methods or variables of the outer class.
+Если мы вызовем ключевое слово «super» без аргументов, которые принимает этот метод. Будут ли переданы хоть какие-то аргументы в метод суперкласса?
+Все аргументы, которые были переданы текущему методу, будут переданы в метод суперкласса
 
-Q: Are eigenclasses inherited?
-A: The eigenclasses of an object are inherited from the eigenclasses of the superclass of the class object. An eigenclass of an object instance stands alone and does not inherit from any other classes.
+???????????????????? Наследуются ли методы синглтона?
+Нет, так как они не определены классом и не имеют никакого отношения к механизму наследования
 
-Q: What happens to any return value of #initialize?
-A: It is ignored.
+Наследуються ли методы класса?
+Да
 
-Q: What is a factory method?
-A: An initialization method that creates specialized instances of a class.
+Наследуются ли константы?
+Да
 
-Q: What is the method to run initialization code on copied instances of an object?
-A: #initialize_copy
+«Наследуются» ли переменные класса?
+???? ( только спросить все ли верно ) Нет, тут поведение / принцип отличаеться от наследования. Любое изменение переменной класса в дочернем классе / subclass приведет к изменению переменной в текущем классе / superclass и во всех остальных подклассах текущего класса.
 
-Q: Does #initialize_copy override #initialize?
-A: No.
+Почему вы должны избегать использования переменных класса?
+Значение переменной класса может быть изменено в любом классе из цепочки наследования, что может привести к непредсказуемому поведению в классах которые используют эти переменные.
 
-Q: What does it mean that Object#dup and #clone perform shallow copies?
-A: The instance variables of the copy are copied by reference rather than by value.
+Когда вы наследуетесь от неизвесного вам класса, чему особенно вы должны уделять внимание?
+Вам следует следить за названиеями методов, так как вы можете переопределить приватные методы родительского класса. Так же следить что бы вы не перезаписали переменные класса.
 
-Q: What is the difference between Object#dup and #clone?
-A: #clone copies the frozen state of an object and any singleton methods of an object while Object#dup does neither.
+Как вы можете предотвратить наследование метода из родительского класса в дочернем классе?
+Воспользовавшись «undef» в дочернем классе
 
-Modules
+Можно ли рассматривать «Module#attr_reader» как пример метапрограммирования?
+Да, так как он создает геттер / getter методы в момен создания класса.
 
-Q: What are two main functions of modules?
-A: As mixins, as namespaces...
+Можно ли получить доступ к инстансным переменным обьекта не из контекста получателя?
+Да. С помощью метод-акцесора, «Object#instance_variable_get», «BasicObject#instance_eval», «Binding#eval».
 
-Q: Can a module be subclassed?
-A: No.
+Какой метод вызывается, если метод который был вызван небыл найден?
+Ближайщий «method_missing»
 
-Q: What happens when a class includes a module?
-A: The instance methods of the module become instance methods of the class.
+Как вы можете открыть «eigenclass» из текущего - ассоциативного класса?
+class << self
 
-Q: What happens when an object extends a module?
-A: The instance methods of the module become singleton methods on the object.
+Что такое «Binding»?
+Обьект класса Binding это контекст, который включает в себя переменные, методы, и т.д. Он хранит в себе это состояние и может предоставить к нему доступ.
 
-Q: What is the superclass of Class?
-A: Module
+Что такое «reflection API» в Руби?
+Это коллекция методов определенных в «Kernel», «Object», и «Module» которая позволяет программе просматривать / изменять свою структуру и состояние.
 
-Q: Why must module names begin with a capital letter?
-A: Because the module keyword creates a new constant that refers to the module and constants begin with a capital letter.
+Какой вызывается метод когда константа небыла найдена?
+Ближайший «const_missing»
 
-Q: How would you check if a module has been included by an object?
-A: Using #is_a? such as with my_obj.is_a? MyModule.
+Опишите «Module#define_method». Количество и порядок принимаемых аргументов.
+«Module#define_method» принимает символ в качестве названия метода и блок (или обьект Method) в качестве тела метода.
 
-Q: What does Module#module_function do?
-A: Makes class copies of the specified methods and makes instance methods private.
+Может ли «eval» принимать блок?
+Нет, «eval» принимает строку. Хотя «Module#class_eval» и «BasicObject#instance_eval» могут принимать блоки.
 
-Structs
+Как вы можете получить ссылку на «eigenclass» класс из текущего - ассоциативного класса?
+«Object#singleton_class», «eigenclass = class << self; self; end;»
 
-Q: What is a Struct in Ruby?
-A: A core Ruby class that generates other classes containing accessor methods for the specified fields.
+Как вы можете изменить область видимости метода из вне класса?
+Используя «Module#class_eval»
 
-Q: Can methods be added to a Struct?
-A: Yes.
+В чем отличие «BasicObject#instance_eval» и «BasicObject#instance_exec»?
+«BasicObject#instance_exec» принимает блок, а не строку. Так же «BasicObject#instance_exec» может принимать аргументы и прокидывать их в блок, позволяя блоку выполнение в контексте получателя с использованием параметров.
 
-Inheritance
+Где определены «class_variable_get», «class_variable_set»?
+«Module»
 
-Q: What's the difference between Object#is_a? and Object#instance_of??
-A: Object#instance_of? ignores inheritance and any mixed-in modules.
+Где определены «instance_variable_get», «instance_variable_set»?
+«Object»
 
-Q: If the super keyword is used in a method without any arguments, which if any arguments get passed to the superclass method?
-A: All arguments that were passed to the current subclass method will be passed to the superclass method.
+Где определены «local_variables», «global_variables»?
+«Kernel»
 
-Q: Are singleton methods inherited?
-A: No, since they are not defined by a class and thus are unrelated to the inheritance mechanism.
+Что такое $LOAD_PATH?
+Это предопределенная переменная ( «$:» синоним к «$LOAD_PATH» ), которая представляет собой массив, в котором содержаться имена каталогов и в котором при загрузке файлов производят поиск методы «load» и «require». В начальном состоянии путь загрузки содержит пути к стандартной библиотеке Ruby.
 
-Q: Are class methods inherited?
-A: Yes.
+В чем отличие Kernel#require от Kernel#load?
+«Kernel#require» не требует указывать расширение файлов и не загружает один и тот же файл дважды.
 
-Q: Are constants inherited?
-A: Yes.
+Имеют ли загруженные припомощи Kernel#require или Kernel#load файлы доступ к локальным переменным текущего файла?
+Нет
 
-Q: Are class variables inherited?
-A: No. The behavior is different than inheritance. Any alteration of a class variable by a subclass affects that class variable in the superclass and all other subclasses of the superclass.
+-----------------------------------------------------------------------------------
 
-Q: Why might you want to avoid the use of class variables?
-A: Their values can be changed at any point in the inheritance chain which can cause unexpected behavior in parent classes or subclasses which use those class variables.
-
-Q: What should you watch out for when subclassing a class that is unknown to you?
-A: Overriding private methods or overwriting class variables.
-
-Q: How might you prevent a method on a superclass from being inherited by a subclass?
-A: Override the method in the subclass or undef the method in the subclass.
-
-Metaprogramming
-
-Q: Can Module#attr_reader be considered an example of metaprogramming?
-A: Yes, since it creates getter methods at the time of the enclosing class definition.
-
-Q: How might you access an instance variable of a receiver object from outside the scope of the receiver object?
-A: With an accessor method or using Object#instance_variable_get, BasicObject#instance_eval, or Binding#eval.
-
-Q: Which method is invoked when a method is not found?
-A: The nearest #method_missing
-
-Q: How can you open an eigenclass from within its associated class?
-A: class << self
-
-Q: What is a binding?
-A: A representation of an object's variable bindings at some moment.
-
-Q: What is Ruby's reflection API?
-A: A collection of methods mostly defined by Kernel, Object, and Module that allow a program to examine its own state and structure.
-
-Q: Which method is invoked when a constant is not found?
-A: The nearest #const_missing
-
-Q: Module#define_method accepts how many and of what types of arguments?
-A: A symbol as the method name and either a block or a Method object as the method body.
-
-Q: Can #eval accept a block?
-A: No, #eval accepts a string. However, Module#class_eval and BasicObject#instance_eval can accept blocks.
-
-Q: How might you obtain a reference to an eigenclass from within its associated class?
-A: Object#singleton_class, eigenclass = class << self; self; end
-
-Q: How might you alter method visibility from outside a class definition?
-A: Using Module#class_eval
-
-Q: What is the difference between BasicObject#instance_eval and BasicObject#instance_exec?
-A: BasicObject#instance_exec can only accept a block, not a string, and it can accept arguments and pass them to the block, allowing the block to be evaluated in the context of the receiver object with parameters whose values come from the block.
-
-Q: Where do #class_variable_get and #class_variable_set live in the object model?
-A: Module
-
-Q: Where do #instance_variable_get and #instance_variable_set live in the object model?
-A: Object
-
-Q: Where do #local_variables and #global_variables live in the object model?
-A: Kernel
-
-Loading Modules, Files, and Gems
-
-Loading
-
-Q: What is $LOAD_PATH?
-A: A global array of strings of the directories to be searched when loading files with the load and require methods. $LOAD_PATH is equivalent to $:.
-
-Q: What is the difference between Kernel#require and Kernel#load?
-A: Kernel#require can load binary extensions. Kernel#require does not require a filename extension. Kernel#require prevents multiple loads of the same file path. Kernel#load loads the specified file at the current $SAFE level while Kernel#require loads the specified file with a $SAFE level of 0.
-
-Q: Does a file loaded with Kernel#require or Kernel#load have access to the local variables of the referencing file?
-A: No.
 
 Q: What is the difference between Kernel#require and Kernel#require_relative?
 A: Kernel#require_relative ignores the load path.
