@@ -15,8 +15,16 @@
   box-shadow: inset 1px 1px 3px #000;
 }
 
+#transparent_separator {
+  background-color: #d0d0d0;
+}
+
 #interview_task, #table_view_wrapper {
   background-color: transparent;
+}
+
+#colorized_separator {
+  background-color: #929494;
 }
 
 .label {

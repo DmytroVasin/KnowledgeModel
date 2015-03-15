@@ -50,33 +50,20 @@ class SetupView::SettingsView < UIView
 
     cell = nil
 
-    if tableView == @my_table_view
-      tableViewCellIdentifier = "MyCells"
+    @reuse_identifier ||= "MyCells"
 
-      cell = tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier)
+    cell = tableView.dequeueReusableCellWithIdentifier(@reuse_identifier) ||
+           UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: @reuse_identifier)
 
-      if cell == nil
-        cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: tableViewCellIdentifier)
-      end
+    cell.layoutMargins = UIEdgeInsetsZero
+    cell.backgroundColor = UIColor.clearColor
 
-      cell.layoutMargins = UIEdgeInsetsZero
-      cell.backgroundColor = UIColor.clearColor
+    cell.textLabel.text = current_option.name
+    cell.accessoryView = switch_radio_btn(current_option)
 
-      cell.textLabel.text = current_option.name
-      cell.accessoryView = switch_radio_btn(current_option)
+    separator_line_view = SetupView::SeparatorView.alloc.initWithFrame(cell.frame, indexPath.row)
+    cell.addSubview(separator_line_view)
 
-      separator_line_view = SetupView::SeparatorView.alloc.initWithFrame(cell.frame)
-
-      # Trick to colorize separator in last row; I dont know - he draw last line without my wish!
-      separator_line_view.backgroundColor = if (indexPath.row != (SearchOption.count - 1))
-        UIColor.colorWithRed(0.573, green:0.58, blue:0.58, alpha:1) #929494
-      else
-        UIColor.clearColor
-      end
-
-
-      cell.addSubview(separator_line_view)
-    end
     cell
   end
 
