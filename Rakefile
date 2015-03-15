@@ -27,7 +27,6 @@ Motion::Project::App.setup do |app|
   app.device_family = [:iphone, :ipad]
 
   app.pixatefreestyle.framework = 'vendor/PixateFreestyle.framework'
-  app.fonts = ["Inconsolata.ttf"]
 
   app.libs += ['/usr/lib/libz.dylib', '/usr/lib/libsqlite3.dylib']
   app.include 'sqlite3.h'
