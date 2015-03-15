@@ -5,7 +5,7 @@ class SetupView < UIView
     super
     self.styleId = 'app_wrapper'
 
-    setup_view = SetupView::Setup.alloc.initWithFrame(frame)
+    setup_view = SetupView::SettingsView.alloc.initWithFrame(frame)
     self.addSubview( setup_view )
     self.addSubview( back_to_main_button )
   end

@@ -1,4 +1,4 @@
-class SetupView::Setup < UIView
+class SetupView::SettingsView < UIView
   def initWithFrame frame
     super
     self.styleId = 'interview_wrapper'
@@ -12,11 +12,7 @@ class SetupView::Setup < UIView
 
   def table_title
     @table_title ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
-      label.frame = [
-        [self.frame.size.width/2 - 100, 10],
-        [200, 40]
-      ]
-
+      label.frame = [[self.frame.size.width/2 - 100, 10], [200, 40]]
       label.autoresizingMask = label.flexible_left_right
 
       label.styleClass = 'label'
@@ -26,29 +22,23 @@ class SetupView::Setup < UIView
   end
 
   def table_view
-    # TODO: Refactoring.
-    @myTableView ||= UITableView.alloc.initWithFrame(CGRectZero, style: UITableViewStylePlain)
+    @my_table_view ||= UITableView.alloc.initWithFrame(CGRectZero, style: UITableViewStylePlain).tap do |my_table_view|
+      my_table_view.styleId = 'table_view_wrapper'
 
-    @myTableView.frame = [
-      [30, 50],
-      [self.frame.size.width - 60, self.frame.size.height - 60]
-    ]
+      my_table_view.frame = [
+        [30, 50],
+        [self.frame.size.width - 60, self.frame.size.height - 60]
+      ]
 
-    @myTableView.dataSource = self
+      my_table_view.autoresizingMask = my_table_view.flexible_width_height
 
-    @myTableView.autoresizingMask = @myTableView.flexible_width_height
-
-    @myTableView.separatorInset = UIEdgeInsetsZero
-    @myTableView.layoutMargins = UIEdgeInsetsZero
-
-    @myTableView.styleId = 'table_view_wrapper'
-
-    @myTableView.alwaysBounceVertical = false
-    @myTableView.allowsSelection = false
-    @myTableView.separatorStyle = UITableViewCellSeparatorStyleNone
-
-    # @myTableView.delegate = self
-    @myTableView
+      my_table_view.dataSource = self
+      my_table_view.separatorInset = UIEdgeInsetsZero
+      my_table_view.layoutMargins = UIEdgeInsetsZero
+      my_table_view.separatorStyle = UITableViewCellSeparatorStyleNone
+      my_table_view.alwaysBounceVertical = false
+      my_table_view.allowsSelection = false
+    end
   end
 
   def tableView tableView, numberOfRowsInSection: section
@@ -58,26 +48,25 @@ class SetupView::Setup < UIView
   def tableView tableView, cellForRowAtIndexPath: indexPath
     current_option = SearchOption.all[indexPath.row]
 
-    result = nil #result == cell ?
+    cell = nil
 
-    if tableView == @myTableView
+    if tableView == @my_table_view
       tableViewCellIdentifier = "MyCells"
 
-      result = tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier)
+      cell = tableView.dequeueReusableCellWithIdentifier(tableViewCellIdentifier)
 
-      if result == nil
-        result = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: tableViewCellIdentifier)
+      if cell == nil
+        cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: tableViewCellIdentifier)
       end
 
-      result.layoutMargins = UIEdgeInsetsZero
+      cell.layoutMargins = UIEdgeInsetsZero
+      cell.backgroundColor = UIColor.clearColor
 
-      result.backgroundColor = UIColor.clearColor
+      cell.textLabel.text = current_option.name
+      cell.accessoryView = switch_radio_btn(current_option)
 
-      result.textLabel.text = current_option.name
-      result.accessoryView = switch_radio_btn(current_option)
+      separator_line_view = SetupView::SeparatorView.alloc.initWithFrame(cell.frame)
 
-
-      separator_line_view = UIView.alloc.initWithFrame([[0, result.frame.size.height - 1], [result.frame.size.width, 1]])
       # Trick to colorize separator in last row; I dont know - he draw last line without my wish!
       separator_line_view.backgroundColor = if (indexPath.row != (SearchOption.count - 1))
         UIColor.colorWithRed(0.573, green:0.58, blue:0.58, alpha:1) #929494
@@ -85,12 +74,13 @@ class SetupView::Setup < UIView
         UIColor.clearColor
       end
 
-      separator_line_view.autoresizingMask = separator_line_view.flexible_width
-      result.addSubview(separator_line_view)
+
+      cell.addSubview(separator_line_view)
     end
-    result
+    cell
   end
 
+  private
   def switch_radio_btn option
     UISwitch.alloc.initWithFrame(CGRectZero).tap {|switch|
       switch.tintColor = UIColor.colorWithRed(0.573, green:0.58, blue:0.58, alpha:1) #929494

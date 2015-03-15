@@ -1,4 +1,4 @@
-class WelcomeView::Description < UIView
+class WelcomeView::LandingView < UIView
   def initWithFrame frame, controller
     super
     self.styleId = 'interview_wrapper'

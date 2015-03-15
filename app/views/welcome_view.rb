@@ -5,7 +5,7 @@ class WelcomeView < UIView
     super
     self.styleId = 'app_wrapper'
 
-    welcome_view = WelcomeView::Description.alloc.initWithFrame(frame, welcome_controller)
+    welcome_view = WelcomeView::LandingView.alloc.initWithFrame(frame, welcome_controller)
     self.addSubview( welcome_view )
     self.addSubview( start_button )
   end
