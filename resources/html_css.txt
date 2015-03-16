@@ -1,0 +1,68 @@
+HTML5
+
+DOCTYPE
+
+class? id? чем отличаются?
+
+div? span? чем отличаются?
+
+jpg? png? gif? что лучше?
+
+БЭМ?
+
+SASS? LESS?
+
+reflow? repaint?
+
+Как работают флоаты?
+
+Как работают инлайн-блоки?
+
+Как работает vertical-align?
+
+Как центрировать по высоте?
+
+Как работает сокращенная запись.
+
+Как сделать, чтобы элемент занимал всю доступную ему ширину?
+
+Как работает z-index? Понятие «stacking context».
+
+Основные методы вёрстки: их преимущества и недостатки.
+
+CSS3. Какие улучшения принес CSS3
+
+Адаптация под экраны высокого разрешения.
+
+SVG
+ - SVG означает scalable vector graphics (масштабируемая векторная графика). Это текстовой язык графики, с помощью которого можно рисовать изображения в виде текста, линий, точек и т.п., что позволяет создавать лёгкие и быстро обрабатываемые браузером изображения.
+
+CSS-препроцессоры
+
+position:relative, absolute, static? Чем они отличаются?
+
+Что такое overflow?
+
+Чем отличается margin от padding?
+
+Что такое специфичность селекторов? (http://www.xiper.net/learn/css/inheritance-and-cascade/specificity.html)
+
+Как подсчитать специфичность селекторов?
+
+!important
+
+css - clearfix? http://ru.learnlayout.com/clearfix.html
+
+responsive - adaptive - static design
+http://habrahabr.ru/post/157115/
+
+Progressive Enhancement
+
+Graceful Degradation
+
+
+Какие новые элементы форм введены в HTML 5 ( назовите хотя бы три )?
+ - В HTML 5 введены десять новых важных элементов форм: Color; Date; Datetime-local; Email; Time; Url; Range; Telephone; Number; Search.
+
+Что такое селекторы в CSS?
+ - Селекторы помогают выбрать элемент, к которому вы хотите применить стиль.
