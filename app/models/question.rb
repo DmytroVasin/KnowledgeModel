@@ -4,33 +4,51 @@ class Question < Base
   end
   attr_accessor *attr_list
 
-  def self.load_by_options
-    # Question.find(12)
-    get_random( SearchOption.only_truthful ) || init_default
+  class << self
+    attr_accessor :is_changed
   end
 
-  # def self.find id
-  #   query = "Select #{table_attrs('q')} from questions q Where q.id = #{id}"
-  #   execute(query).first
-  # end
+  def self.load_by_options
+    return init_default if random_ids.empty?
+
+    id = calculate_current_id
+    Question.find(random_ids[id])
+  end
 
   private
-
-  def self.get_random options
-    if options.any?
-      query = "SELECT #{table_attrs('q')} FROM questions q \
-               INNER JOIN sections s ON q.section_id = s.id \
-               WHERE "
-
-      query << options.map{ |option| "s.name = '#{option.name}'" }.join(' OR ')
-
-      query << ' ORDER BY RANDOM() LIMIT 1'
-
-      puts "Query: #{query}"
-      execute(query){ self.new }.first
+  def self.calculate_current_id
+    if @current_id && @current_id < (random_ids.count - 1)
+      @current_id += 1
     else
-      puts 'Search option is empty'
+      @current_id = 0
     end
+  end
+
+  def self.random_ids
+    shuffle_ids if @is_changed
+    @random_ids ||= get_random_question_ids(SearchOption.only_truthful)
+  end
+
+  def self.shuffle_ids
+    @random_ids = get_random_question_ids(SearchOption.only_truthful)
+    @is_changed = false
+  end
+
+  def self.get_random_question_ids options
+    return [] if options.none?
+
+    query = "SELECT q.id FROM questions q \
+             INNER JOIN sections s ON q.section_id = s.id \
+             WHERE "
+    query << options.map{ |option| "s.name = '#{option.name}'" }.join(' OR ')
+    query << ' ORDER BY RANDOM()'
+
+    execute(query){ self.new }.map(&:id)
+  end
+
+  def self.find id
+    query = "SELECT #{table_attrs('q')} FROM questions q WHERE q.id = #{id}"
+    execute(query){ self.new }.first
   end
 
   def self.init_default

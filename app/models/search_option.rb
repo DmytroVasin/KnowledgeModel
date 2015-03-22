@@ -5,6 +5,7 @@ class SearchOption
 
     def init
       @all = prepare_search_options
+      # @@state_is_changed = false
     end
 
     def count
@@ -18,6 +19,13 @@ class SearchOption
     def only_truthful
       all.select{|option| option.is_set? }
     end
+
+    # def is_changed?
+    #   is_changed = @@state_is_changed
+    #   @@state_is_changed = false if @@state_is_changed
+
+    #   is_changed
+    # end
   end
 
   # Instance methods:
@@ -34,6 +42,8 @@ class SearchOption
   end
 
   def set status
+    # @@state_is_changed = true
+    Question.is_changed = true
     @value = status
   end
 
