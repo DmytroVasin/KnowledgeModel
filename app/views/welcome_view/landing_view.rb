@@ -34,7 +34,7 @@ class WelcomeView::LandingView < UIView
 
       label.styleId = 'label_ruby_test'
       label.styleClass = 'label'
-      label.text = 'Руби Тест'
+      label.text = 'Ruby / Rails'
     end
   end
 
@@ -47,7 +47,7 @@ class WelcomeView::LandingView < UIView
 
       label.styleId = 'label_by'
       label.styleClass = 'label'
-      label.text = 'BY'
+      label.text = 'ТЕСТЫ'
     end
   end
 
