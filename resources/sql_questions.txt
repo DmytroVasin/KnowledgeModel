@@ -20,19 +20,19 @@ SELECT FirstName FROM Persons
 SELECT * FROM Persons
 
 Как выбрать все записи из таблицы "Persons", где значение поля "FirstName" равно "Peter"?
-SELECT * FROM Persons WHERE FirstName='Peter'
+SELECT * FROM Persons WHERE FirstName="Peter"
 
 Как выбрать все записи из таблицы "Persons", где значение поля "FirstName" начинается с буквы "a"?
-SELECT * FROM Persons WHERE FirstName LIKE 'a%'
+SELECT * FROM Persons WHERE FirstName LIKE "a%"
 
 Оператор OR срабатывает когда ХОТЬ ОДНО условие истинно. AND когда ВСЕ условия истинны.
 Истина
 
 Как выбрать все записи из таблицы "Persons", где значение поля "FirstName" равно "Peter" и "LastName" равно "Jackson"?
-SELECT * FROM Persons WHERE FirstName='Peter' AND LastName='Jackson'
+SELECT * FROM Persons WHERE FirstName="Peter" AND LastName="Jackson"
 
 Как выбрать все записи из таблицы "Persons", где значение поля "LastName" в алфавитном порядке находится между значениями "Hansen" и "Pettersen"?
-SELECT * FROM Persons WHERE LastName BETWEEN 'Hansen' AND 'Pettersen'
+SELECT * FROM Persons WHERE LastName BETWEEN "Hansen" AND "Pettersen"
 
 Какое SQL выражение используется для извлечения различных значений?
 SELECT DISTINCT
@@ -44,16 +44,16 @@ ORDER BY
 SELECT * FROM Persons ORDER BY FirstName DESC
 
 Выберите правильный SQL запрос для вставки новой записи в таблицу "Persons".
-INSERT INTO Persons VALUES ('Jimmy', 'Jackson')
+INSERT INTO Persons VALUES ("Jimmy", "Jackson")
 
 Выберите правильный SQL запрос для вставки новой записи в таблицу "Persons", причём в поле "LastName" вставить значение "Olsen".
-INSERT INTO Persons (LastName) VALUES ('Olsen')
+INSERT INTO Persons (LastName) VALUES ("Olsen")
 
 Как изменить значение "Hansen" на "Nilsen" в колонке "LastName", таблицы Persons?
-UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen'
+UPDATE Persons SET LastName="Nilsen" WHERE LastName="Hansen"
 
 Как удалить записи, где значение поля "FirstName" равно "Peter"?
-DELETE FROM Persons WHERE FirstName = 'Peter'
+DELETE FROM Persons WHERE FirstName = "Peter"
 
 Как вывести количество записей, хранящихся в таблице "Persons"?
 SELECT COUNT(*) FROM Persons
@@ -92,8 +92,7 @@ LIKE - это оператор:
 Выполняющий сравнение строковых значений;
 
 Назовите Оператор соединения таблиц - это:
-INNER JOIN; LEFT JOIN, RIGHT JOIN; FULL OUTHER JOIN
-
+«INNER JOIN», «LEFT JOIN», «RIGHT JOIN», «FULL OUTHER JOIN»
 
 Оператор, определяющий, должен ли подчиненный запрос возвращать какие-либо записи:
 EXISTS
@@ -153,7 +152,7 @@ Join
 Если соотнесенный подзапрос производит какой-либо вывод
 
 Как вставить в таблицу Sales два числа – числовое, текстовое?
-INSERT INTO Sales VALUES (1001, 'Peel');
+INSERT INTO Sales VALUES (1001, "Peel");
 
 Что выполняет команда Drop Table?
 Удаляет только пустую таблицу базы данных
