@@ -30,8 +30,8 @@ class InterviewController < ApplicationController
   end
 
   def prepare_question_text question
-    # NOTE: 50 - magic number, because observer of the text_view is not trigger,
+    # NOTE: 80 - magic number, because observer of the text_view is not trigger,
     # when length is lower then one displayed string.
-    question.length < 50 ? "\n#{question}\n" : question
+    question.length < 80 ? "\n#{question}\n" : question
   end
 end

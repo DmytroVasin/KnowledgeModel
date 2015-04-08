@@ -2,8 +2,8 @@ class JWButton
   def self.default_button(title, action: action, frame: frame, controller: controller)
     UIButton.buttonWithType(UIButtonTypeCustom).tap do |button|
       button.frame = [
-        [frame.size.width/2 - 167, frame.size.height - 53],
-        [334, 41]
+        [20, frame.size.height - 53],
+        [frame.size.width - 40, 41]
       ]
 
       button.setTitle(title, forState: UIControlStateNormal)
