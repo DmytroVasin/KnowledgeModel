@@ -29,7 +29,7 @@ class WelcomeView::LandingView < UIView
   def label_ruby_test
     @label_ruby_test ||= UILabel.alloc.initWithFrame(CGRectZero).tap do |label|
       label.sizeToFit
-      label.frame = label_bounds(self.frame)
+      label.frame = [[10, self.frame.size.height/5],[self.frame.size.width - 20, 60]]
       label.autoresizingMask = label.flexible_all
 
       label.styleId = 'label_ruby_test'
@@ -65,8 +65,8 @@ class WelcomeView::LandingView < UIView
   private
   def label_bounds previous_frame
     [
-      [10, previous_frame.origin.y + self.frame.size.height/5],
-      [frame.size.width - 20, 60]
+      [10, previous_frame.origin.y + self.frame.size.height/4],
+      [self.frame.size.width - 20, 60]
     ]
   end
 end

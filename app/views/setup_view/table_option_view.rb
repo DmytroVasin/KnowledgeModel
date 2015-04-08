@@ -40,6 +40,8 @@ class SetupView::TableOptionView < UITableView
 
     cell.textLabel.text = current_option.name
 
+    cell.font = UIFont.fontWithName('Verdana', size: 16)
+
     cell.accessoryView  = SetupView::SwitchRadioButtonView.alloc.initWithFrame(CGRectZero, current_option)
     separator_line_view = SetupView::SeparatorView.alloc.initWithFrame(cell.frame, indexPath.row)
     cell.addSubview(separator_line_view)
