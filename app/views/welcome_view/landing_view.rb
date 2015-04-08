@@ -65,8 +65,8 @@ class WelcomeView::LandingView < UIView
   private
   def label_bounds previous_frame
     [
-      [self.frame.size.width/2 - 130, previous_frame.origin.y + 140],
-      [260, 60]
+      [10, previous_frame.origin.y + self.frame.size.height/5],
+      [frame.size.width - 20, 60]
     ]
   end
 end
