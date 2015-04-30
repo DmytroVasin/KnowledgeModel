@@ -1,6 +1,6 @@
 class AppProperties
   ID    = 'com.rails-junior.app'
-  NAME    = 'Ruby Knowledge Test'
+  NAME    = 'Ruby/Rails Test'
   VERSION = '1.0.0'
 
   def name
