@@ -3,6 +3,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
 require 'rubygems'
 require 'motion-pixatefreestyle'
+require './resources/app_properties'
 
 begin
   require 'bundler'
@@ -11,23 +12,32 @@ rescue LoadError
 end
 
 Motion::Project::App.setup do |app|
-  # Use `rake config' to see complete project settings.
-  app.name = 'Ruby Knowledge Test'
-  app.version = '0.1.0'
+  properties = AppProperties.new
 
-  # app.interface_orientations = [:portrait]
-
-  app.icons = [
-    'icons/j-way-icon-iphone.png',
-    'icons/j-way-icon-iphone-retina.png',
-    'icons/j-way-icon-ipad.png',
-    'icons/j-way-icon-ipad-retina.png'
-  ]
-  app.prerendered_icon = true
-  app.device_family = [:iphone, :ipad]
+  app.name             = properties.name
+  app.icons            = properties.icons
+  app.identifier       = properties.identifier
+  app.prerendered_icon = properties.prerendered_icon
+  app.device_family    = properties.devices
 
   app.pixatefreestyle.framework = 'vendor/PixateFreestyle.framework'
 
-  app.libs += ['/usr/lib/libz.dylib', '/usr/lib/libsqlite3.dylib']
+  app.libs += properties.libraries
   app.include 'sqlite3.h'
+
+  app.development do
+    p 'Setting development options...'
+
+    app.version              = properties.dev_version
+    app.codesign_certificate = properties.dev_certificate
+    app.provisioning_profile = properties.dev_profile_path
+  end
+
+  app.release do
+    p 'Setting release options...'
+
+    app.version              = properties.version
+    app.codesign_certificate = properties.release_certificate
+    app.provisioning_profile = properties.release_profile_path
+  end
 end
