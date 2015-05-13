@@ -17,20 +17,20 @@ class AppProperties
 
   def icons
     [
-      'icons/j-way-icon-iphone-40-small.png',
-      'icons/j-way-icon-iphone-40-small@2x.png',
-      'icons/j-way-icon-iphone-40-small@3x.png',
-      'icons/j-way-icon-iphone-60@2x.png',
-      'icons/j-way-icon-iphone-60@3x.png',
-      'icons/j-way-icon-iphone-72.png',
-      'icons/j-way-icon-iphone-72@2x.png',
-      'icons/j-way-icon-iphone-76@.png',
-      'icons/j-way-icon-iphone-76@2x.png',
-      'icons/j-way-icon-iphone-small.png',
-      'icons/j-way-icon-iphone-small@2x.png',
-      'icons/j-way-icon-iphone-small@3x.png',
-      'icons/j-way-icon-iphone.png',
-      'icons/j-way-icon-iphone@2x.png',
+      'j-way-icon-iphone-40-small.png',
+      'j-way-icon-iphone-40-small@2x.png',
+      'j-way-icon-iphone-40-small@3x.png',
+      'j-way-icon-iphone-60@2x.png',
+      'j-way-icon-iphone-60@3x.png',
+      'j-way-icon-iphone-72.png',
+      'j-way-icon-iphone-72@2x.png',
+      'j-way-icon-iphone-76@.png',
+      'j-way-icon-iphone-76@2x.png',
+      'j-way-icon-iphone-small.png',
+      'j-way-icon-iphone-small@2x.png',
+      'j-way-icon-iphone-small@3x.png',
+      'j-way-icon-iphone.png',
+      'j-way-icon-iphone@2x.png',
     ]
   end
 
@@ -56,14 +56,18 @@ class AppProperties
 
 
   def dev_certificate
+    ENV['DEVELOPMENT_CERTIFICATE_NAME']
   end
 
   def dev_profile_path
+    ENV['DEVELOPMENT_PROVISIONING_PROFILE_PATH']
   end
 
   def release_certificate
+    ENV['RELEASE_CERTIFICATE_NAME']
   end
 
   def release_profile_path
+    ENV['RELEASE_PROVISIONING_PROFILE_PATH']
   end
 end
